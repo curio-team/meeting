@@ -36,7 +36,7 @@
     </div>
 
     <footer class="container">
-        <p><small>Found a bug? Please create an issue at our <a href="https://github.com/StudioKaa/current/issues" target="_blank">GitHub</a> repository.</small><br /><small>Designed, built and powered by <a target="_blank" href="http://studiokaa.co">studioKaa</a>, for Team ICO at Radius College.</small></p>
+        <p><small>Found a bug? Please create an issue at our <a href="https://github.com/amorocks/meeting/issues" target="_blank">GitHub</a> repository.</small><br /><small>Designed, built and powered by <a target="_blank" href="http://studiokaa.co">studioKaa</a>, for Team ICO at Radius College.</small></p>
     </footer>
 
 </body>
