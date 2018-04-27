@@ -1,0 +1,74 @@
+.container.main{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.breadcrumb{
+	background: none;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar-brand{
+	margin-right: 0;
+}
+
+.breadcrumb-item{
+	display: flex;
+	align-items: center;
+}
+
+form, .page-title{
+	margin-top: 2em;
+	margin-bottom: .7em;
+}
+
+.num-box{
+	width: 50px;
+	text-align: center;
+}
+
+#calendar-container{
+	height: calc(100vh - 56px - 2em);
+}
+
+#calendar h2{
+	font-size: 1.2em;
+}
+
+.fc-toolbar .fc-center{
+	display: inline-flex;
+	align-items: center;
+}
+
+.weeknumber{
+	
+}
+
+.weeknumber.primary{
+	opacity: 1;
+    background: rgba(0,0,0,0);
+}
+
+.weeknumber.secondary{
+	opacity: .7;
+	background: rgb(0,170,0,.1);
+}
+
+.weeknumber span{
+	display: inline-block;
+    padding: 2px 5px;
+    font-style: italic;
+    font-size: .9em;
+}
+
+.weeknumber.primary span{
+	font-weight: bold;
+}
+
+
+@media screen and (max-width: 700px) {
+	html{
+		font-size: 14px;
+	}
+}
