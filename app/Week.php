@@ -4,10 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use App\Meeting;
 
 class Week extends Model
 {
     protected $guarded = [];
+
+    public function meetings()
+    {
+        return $this->hasMany(\App\Meeting::class);
+    }
 
     public function getStartAttribute()
     {
