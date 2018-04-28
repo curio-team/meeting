@@ -31,7 +31,12 @@ class Week extends Model
 
     public function getTitleAttribute()
     {
-    	if($this->week == null) return $this->description;
-    	return $this->term . '.' . $this->week;
+        return $this->getNumberAttribute() ?? $this->description ?? null;
+    }
+
+    public function getNumberAttribute()
+    {
+        if($this->week == null) return null;
+        return $this->term . '.' . $this->week;
     }
 }

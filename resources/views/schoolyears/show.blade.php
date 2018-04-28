@@ -22,8 +22,7 @@
 			<tr>
 				<th style="width: 130px;">Week</th>
 				<th style="width: 70px;">&nbsp;</th>
-				<th style="width: 130px;">Vergadering</th>
-				<th>Topics</th>
+				<th>Vergadering</th>
 				<th>Acties</th>
 			</tr>
 		</thead>
@@ -32,13 +31,16 @@
 				<tr>
 					<td>{{ $week->start->format('d-m') }} - {{ $week->end->format('d-m') }}</td>
 					<td>{{ $week->title }}</td>
-					<th></th>
-					<td></td>
-					<td></td>
+					<td>
+						@foreach($week->meetings as $meeting)
+							<a href="{{ route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]) }}">{{ $meeting->title }}</a>{{ $loop->last ? '' : ',' }}
+						@endforeach
+					</td>
+					<td><a href="{{ route('schoolyears.weeks.meetings.create', [$schoolyear, $week]) }}"><i class="fas fa-plus"></i> Nieuw</a></td>
 				</tr>
 			@empty
 				<tr>
-					<td colspan="5">De weken voor dit schooljaar zijn nog niet benoemd! <a href="{{ route('schoolyears.weeks.create', $schoolyear) }}">Nu regelen &gt;</a></td>
+					<td colspan="4">De weken voor dit schooljaar zijn nog niet benoemd! <a href="{{ route('schoolyears.weeks.create', $schoolyear) }}">Nu regelen &gt;</a></td>
 				</tr>
 			@endforelse
 		</tbody>

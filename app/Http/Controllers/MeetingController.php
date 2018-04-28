@@ -29,4 +29,12 @@ class MeetingController extends Controller
 
     	return redirect()->route('schoolyears.show', $schoolyear);
     }
+
+    public function show(Schoolyear $schoolyear, Week $week, Meeting $meeting)
+    {
+        return view('meetings.show')
+            ->with(compact('schoolyear'))
+            ->with(compact('week'))
+            ->with(compact('meeting'));
+    }
 }

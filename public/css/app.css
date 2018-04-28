@@ -19,8 +19,17 @@
 }
 
 form, .page-title{
-	margin-top: 2em;
+	margin-top: 1.5em;
 	margin-bottom: .7em;
+}
+
+.meeting .page-title{
+	margin-bottom: 0;
+}
+
+.meeting td:first-child, .meeting th:first-child{
+	padding-left: 0;
+	width: 120px;
 }
 
 .num-box{
@@ -39,10 +48,6 @@ form, .page-title{
 .fc-toolbar .fc-center{
 	display: inline-flex;
 	align-items: center;
-}
-
-.weeknumber{
-	
 }
 
 .weeknumber.primary{

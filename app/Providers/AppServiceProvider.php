@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        setlocale(LC_ALL, 'nl_NL', 'Dutch_Netherlands', 'Dutch');
+        setlocale(LC_ALL, 'nl_NL', 'nld_nld', 'Dutch_Netherlands', 'Dutch');
+        Carbon::setLocale(config('app.locale'));
     }
 
     /**

@@ -8,4 +8,6 @@ use DateTime;
 class Meeting extends Model
 {
 
+	protected $dates = ['date', 'created_at', 'updated_at'];
+
 }
