@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use App\Meeting;
+use App\schoolyear;
 
 class Week extends Model
 {
@@ -12,7 +13,12 @@ class Week extends Model
 
     public function meetings()
     {
-        return $this->hasMany(\App\Meeting::class);
+        return $this->hasMany(Meeting::class);
+    }
+
+    public function schoolyear()
+    {
+        return $this->belongsTo(Schoolyear::class);
     }
 
     public function getStartAttribute()

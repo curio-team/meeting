@@ -29,14 +29,26 @@ class CalendarController extends Controller
         foreach ($weeks as $week)
         {
             $events[] = array(
-                "id" => $week->id,
-                "title" => "{$week->title}",
+                "id" => $week->id.'w',
+                "title" => $week->title ?? '',
                 "allDay" => true,
                 "start" => $week->start->format('Y-m-d'),
                 "end" => $week->end->modify('+1 day')->format('Y-m-d'),
                 "rendering" => "background",
                 "className" => $week->term ? "weeknumber primary" : "weeknumber secondary"
             );
+
+            foreach ($week->meetings as $meeting)
+            {
+                $events[] = array(
+                    "id" => $meeting->id.'m',
+                    "title" => $meeting->title,
+                    "allDay" => true,
+                    "start" => $meeting->date->format('Y-m-d'),
+                    "end" => $meeting->date->format('Y-m-d'),
+                    "url" => route('schoolyears.weeks.meetings.show', [$week->schoolyear, $week, $meeting])
+                );
+            }
         }
 
         return $events;
