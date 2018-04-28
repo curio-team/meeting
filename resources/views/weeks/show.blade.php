@@ -25,7 +25,8 @@
 	<ul>
 		<li>Voer alle weeknummers en periodes in, sla daarbij de vakanties en studieweken over.</li>
 		<li>Bij weken die niet genummerd zijn, laat je het vakje leeg</li>
-		<li>Je kunt een opmerking invoeren, maar dat hoeft niet.</li>
+		<li>Je kunt een opmerking invoeren, maar dat hoeft niet (studieweek, startweek, etc.).</li>
+		<li>Het vinkje <em>vergadering maken</em> genereert een nieuwe teamvergadering voor die week.</li>
 	</ul>
 
 	<form action="{{ route('schoolyears.weeks.store', $schoolyear) }}" method="POST">
@@ -33,10 +34,11 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th>Week nr.</th>
-					<th>Week</th>
+					<th>Week-nr.</th>
+					<th>Datum</th>
 					<th>Periode</th>
-					<th>Week-in-periode</th>
+					<th>Week</th>
+					<th>Vergadering maken</th>
 					<th>Opmerkingen</th>
 				</tr>
 			</thead>
@@ -57,12 +59,26 @@
 							<input type="text" tabindex="1" name="weeks[{{ $week->iso_week }}][week]" class="form-control num-box" value="{{ old('weeks.'.$week->iso_week.'.week', $week->week) }}">
 						</td>
 						<td>
+							<input type="checkbox" tabindex="1" name="weeks[{{ $week->iso_week }}][meeting]" value="1">
+						</td>
+						<td>
 							<input type="text" tabindex="0" name="weeks[{{ $week->iso_week }}][description]" class="form-control" value="{{ old('weeks.'.$week->iso_week.'.description', $week->description) }}">
 						</td>
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
+		<div>
+			<label for="day">Plaats gegenereerde vergaderingen op:</label>
+			<select name="day" id="day">
+				<option value="0">maandag</option>
+				<option value="1">dinsdag</option>
+				<option value="2">woensdag</option>
+				<option value="3" selected>donderdag</option>
+				<option value="4">vrijdag</option>
+			</select>.
+		</div>
+		
 		<button class="btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
 	</form>
 

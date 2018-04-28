@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Schoolyear;
 use App\Week;
+use App\Meeting;
 use DateTime;
 
 class WeekController extends Controller
@@ -56,6 +57,15 @@ class WeekController extends Controller
             $week->week = $req_week['week'];
             $week->description = $req_week['description'];
             $week->save();
+
+            if($req_week['meeting'] ?? false)
+            {
+                $meeting = new Meeting();
+                $meeting->week_id = $week->id;
+                $meeting->date = $week->start->modify("+{$request->day} days")->format('Y-m-d');
+                $meeting->title = 'Teamvergadering';
+                $meeting->save();
+            }
     	}
 
     	return redirect()->route('schoolyears.show', $schoolyear);	
