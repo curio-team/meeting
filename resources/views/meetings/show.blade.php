@@ -43,8 +43,8 @@
 						<td>{{ $loop->iteration }}.</td>
 						<td>{{ $suggestion->title }}</td>
 						<td>
-							<a href=""><i class="fas fa-plus"></i> Toevoegen</a>,
-							<a href=""><i class="fas fa-ban"></i> Negeren</a>,
+							<a href="{{ route('suggestions.add', [$suggestion, $meeting]) }}"><i class="fas fa-plus"></i> Toevoegen</a>,
+							<a href="{{ route('suggestions.ignore', [$suggestion, $schoolyear]) }}"><i class="fas fa-ban"></i> Negeren</a>,
 							<a href="{{ route('suggestions.edit', $suggestion) }}" target="_blank"><i class="fas fa-edit"></i> Aanpassen</a>
 						</td>
 					</tr>

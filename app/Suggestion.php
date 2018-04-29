@@ -17,6 +17,12 @@ class Suggestion extends Model
     {
     	$week = $meeting->week;
     	if($week->term == null) return false;
-    	return self::where('term', $week->term)->where('week', $week->week)->get();
+
+    	return self
+    		::where('term', $week->term)
+    		->where('week', $week->week)
+    		->whereDoesntHave('schoolyears', function($query) use($meeting){
+    			$query->where('schoolyear_id', $meeting->week->schoolyear->id);
+    		})->get();
     }
 }

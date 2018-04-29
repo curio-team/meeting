@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Suggestion;
+use App\Schoolyear;
+use App\Meeting;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class SuggestionController extends Controller
@@ -59,5 +62,22 @@ class SuggestionController extends Controller
     {
         $suggestion->delete();
         return redirect()->route('suggestions.index');
+    }
+
+    public function ignore(Suggestion $suggestion, Schoolyear $schoolyear)
+    {
+        $suggestion->schoolyears()->attach($schoolyear);
+        return redirect()->back();
+    }
+
+    public function add(Suggestion $suggestion, Meeting $meeting)
+    {
+        $topic = new Topic();
+        $topic->title = $suggestion->title;
+        $topic->open = true;
+        $meeting->topics()->save($topic, ['added_by' => 11]);
+
+        $suggestion->schoolyears()->attach($meeting->week->schoolyear);
+        return redirect()->back();
     }
 }
