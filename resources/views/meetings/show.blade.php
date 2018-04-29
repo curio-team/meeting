@@ -41,7 +41,10 @@
 		</p>
 		<ol>
 			@foreach($meeting->agendables as $agendable)
-				<li>{{ $agendable->title }} ({{ $agendable->agenda_item->added_by }}, {{ $agendable->agenda_item->duration }}min)</li>
+				<li>
+					{{ $agendable->title }}
+					{{ $agendable->agenda_item->duration ? '('.$agendable->agenda_item->duration.'min)' : '' }}
+				</li>
 			@endforeach
 		</ol>
 	</div>
