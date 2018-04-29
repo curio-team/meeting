@@ -50,8 +50,14 @@ class SuggestionController extends Controller
         $suggestion->save();
     }
 
+    public function delete(Suggestion $suggestion)
+    {
+        return view('suggestions.delete')->with(compact('suggestion'));
+    }
+
     public function destroy(Suggestion $suggestion)
     {
-        //
+        $suggestion->delete();
+        return redirect()->route('suggestions.index');
     }
 }

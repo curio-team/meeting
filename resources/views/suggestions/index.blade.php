@@ -28,7 +28,7 @@
 							<td>{{ $suggestion->title }}</td>
 							<td>
 								<a href="{{ route('suggestions.edit', $suggestion) }}"><i class="fas fa-edit"></i> Aanpassen</a>,
-								<a href="#"><i class="fas fa-trash"></i> Verwijderen</a>
+								<a href="{{ route('suggestions.delete', $suggestion) }}"><i class="fas fa-trash"></i> Verwijderen</a>
 							</td>
 						</tr>
 					@empty
