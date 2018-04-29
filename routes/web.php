@@ -20,3 +20,7 @@ Route::get('schoolyears/{schoolyear}/weeks', 'WeekController@show')->name('schoo
 Route::post('schoolyears/{schoolyear}/weeks', 'WeekController@store')->name('schoolyears.weeks.store');
 
 Route::resource('schoolyears.weeks.meetings', 'MeetingController', ['except' => 'index']);
+Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
+Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
+Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/associate', 'TopicController@associate')->name('schoolyears.weeks.meetings.topics.associate');
+

@@ -35,6 +35,9 @@
 		</table>
 
 		<h5>Agenda</h5>
+		<p>
+			<a href="{{ route('schoolyears.weeks.meetings.topics.create', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Nieuw onderwerp</a>,
+		</p>
 		<ol>
 			@foreach($meeting->topics as $topic)
 				<li>{{ $topic->title }} ({{ $topic->agenda_item->added_by }}, {{ $topic->agenda_item->duration }}min)</li>
