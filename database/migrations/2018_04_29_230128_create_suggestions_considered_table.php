@@ -17,7 +17,6 @@ class CreateSuggestionsConsideredTable extends Migration
             $table->increments('id');
             $table->integer('suggestion_id')->unsigned();
             $table->integer('schoolyear_id')->unsigned();
-            $table->timestamps();
 
             $table->foreign('suggestion_id')
                     ->references('id')->on('suggestions')
