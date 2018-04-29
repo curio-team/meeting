@@ -26,7 +26,10 @@
 						<tr>
 							<td>@if($loop->first) {{ $term }}.{{ $week }} @endif</td>
 							<td>{{ $suggestion->title }}</td>
-							<td>Acties</td>
+							<td>
+								<a href="{{ route('suggestions.edit', $suggestion) }}"><i class="fas fa-edit"></i> Aanpassen</a>,
+								<a href="#"><i class="fas fa-trash"></i> Verwijderen</a>
+							</td>
 						</tr>
 					@empty
 						<tr>

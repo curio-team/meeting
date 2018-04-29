@@ -20,34 +20,34 @@ class SuggestionController extends Controller
 
     public function store(Request $request)
     {
+        $this->save($request);
+        return redirect()->route('suggestions.index');
+    }
+
+    public function edit(Suggestion $suggestion)
+    {
+        return view('suggestions.edit')->with(compact('suggestion'));
+    }
+
+    public function update(Request $request, Suggestion $suggestion)
+    {
+        $this->save($request, $suggestion);
+        return redirect()->route('suggestions.index');
+    }
+
+    private function save(Request $request, Suggestion $suggestion = null)
+    {
         $request->validate([
             'term' => 'required|integer|between:1,4',
             'week' => 'required|integer|between:1,9',
             'title' => 'required'
         ]);
 
-        $suggestion = new Suggestion();
+        $suggestion = $suggestion ?? new Suggestion();
         $suggestion->term = $request->term;
         $suggestion->week = $request->week;
         $suggestion->title = $request->title;
         $suggestion->save();
-
-        return redirect()->route('suggestions.index');
-    }
-
-    public function show(Suggestion $suggestion)
-    {
-        //
-    }
-
-    public function edit(Suggestion $suggestion)
-    {
-        //
-    }
-
-    public function update(Request $request, Suggestion $suggestion)
-    {
-        //
     }
 
     public function destroy(Suggestion $suggestion)
