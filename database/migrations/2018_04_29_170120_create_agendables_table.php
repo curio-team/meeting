@@ -18,7 +18,7 @@ class CreateAgendablesTable extends Migration
             $table->integer('meeting_id')->unsigned();
             $table->integer('agendable_id')->unsigned();
             $table->string('agendable_type');
-            $table->integer('added_by')->unsigned();
+            $table->string('added_by');
             $table->integer('duration')->unsigned()->nullable();
             $table->integer('order')->unsigned()->nullable();
             $table->timestamps();
