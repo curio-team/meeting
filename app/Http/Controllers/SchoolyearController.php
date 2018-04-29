@@ -8,11 +8,7 @@ use DateTime;
 
 class SchoolyearController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return view('schoolyears.index')->with('schoolyears', Schoolyear::all());
@@ -20,25 +16,15 @@ class SchoolyearController extends Controller
 
     public function show(Schoolyear $schoolyear)
     {
+        $schoolyear->load('weeks.meetings');
         return view('schoolyears.show')->with('schoolyear', $schoolyear);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view("schoolyears.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -66,38 +52,4 @@ class SchoolyearController extends Controller
         return redirect()->route('schoolyears.weeks.show', $schoolyear);
     }
     
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Schoolyear  $schoolyear
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Schoolyear $schoolyear)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Schoolyear  $schoolyear
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Schoolyear $schoolyear)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Schoolyear  $schoolyear
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Schoolyear $schoolyear)
-    {
-        //
-    }
 }
