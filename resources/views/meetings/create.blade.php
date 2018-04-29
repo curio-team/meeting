@@ -56,7 +56,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-12">
-				<button type="submit" class="btn btn-success">Volgende <i class="fas fa-chevron-right"></i></button>
+				<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
 			</div>
 		</div>
 	</form>
