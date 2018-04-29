@@ -27,7 +27,7 @@ form, .page-title{
 	margin-bottom: 0;
 }
 
-.meeting td:first-child, .meeting th:first-child{
+.meeting .table-borderless td:first-child, .meeting .table-borderless th:first-child{
 	padding-left: 0;
 	width: 120px;
 }

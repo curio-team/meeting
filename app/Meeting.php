@@ -26,7 +26,7 @@ class Meeting extends Model
     {
     	return $this->morphedByMany(Topic::class, 'agendable')
     		->as('agenda_item')
-    		->withPivot(['added_by', 'duration', 'order'])
+    		->withPivot(['id', 'added_by', 'duration', 'order'])
     		->withTimeStamps();
     }
 
@@ -34,7 +34,7 @@ class Meeting extends Model
     {
     	return $this->morphedByMany(Task::class, 'agendable')
     		->as('agenda_item')
-    		->withPivot(['added_by', 'duration', 'order'])
+    		->withPivot(['id', 'added_by', 'duration', 'order'])
     		->withTimeStamps();
     }
 

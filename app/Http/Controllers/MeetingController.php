@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Schoolyear;
 use App\Week;
 use App\Meeting;
+use App\Agendable;
 
 class MeetingController extends Controller
 {
@@ -36,5 +37,25 @@ class MeetingController extends Controller
             ->with(compact('schoolyear'))
             ->with(compact('week'))
             ->with(compact('meeting'));
+    }
+
+    public function order(Schoolyear $schoolyear, Week $week, Meeting $meeting)
+    {
+        return view('meetings.order')
+            ->with(compact('schoolyear'))
+            ->with(compact('week'))
+            ->with(compact('meeting'));
+    }
+
+    public function sort(Schoolyear $schoolyear, Week $week, Meeting $meeting, Request $request)
+    {
+        foreach($request->order as $id => $order)
+        {
+            $agendable = Agendable::find($id);
+            $agendable->order = $order;
+            $agendable->save();
+        }
+
+        return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
     }
 }
