@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use App\Week;
 use App\Topic;
 use App\Task;
 
@@ -12,6 +13,11 @@ class Meeting extends Model
 
 	protected $dates = ['date', 'created_at', 'updated_at'];
 	protected $with = ['topics', 'tasks'];
+
+    public function week()
+    {
+        return $this->belongsTo(Week::class);
+    }
 
 	public function agendables()
 	{

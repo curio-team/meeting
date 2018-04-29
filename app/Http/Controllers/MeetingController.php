@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Suggestion;
 use App\Schoolyear;
 use App\Week;
 use App\Meeting;
@@ -34,6 +35,7 @@ class MeetingController extends Controller
     public function show(Schoolyear $schoolyear, Week $week, Meeting $meeting)
     {
         return view('meetings.show')
+            ->with('suggestions', Suggestion::findForMeeting($meeting))
             ->with(compact('schoolyear'))
             ->with(compact('week'))
             ->with(compact('meeting'));

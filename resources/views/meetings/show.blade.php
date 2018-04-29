@@ -33,6 +33,24 @@
 				<td>{{ $week->title ?? 'Onbekend' }}</td>
 			</tr>
 		</table>
+		
+		@if(count($suggestions))
+			<h4 class="mt-5">Suggesties</h4>
+			<p>Er zijn suggesties aanwezig voor week {{ $week->title }}:</p>
+			<table class="table table-borderless table-sm">
+				@foreach($suggestions as $suggestion)
+					<tr>
+						<td>{{ $loop->iteration }}.</td>
+						<td>{{ $suggestion->title }}</td>
+						<td>
+							<a href=""><i class="fas fa-plus"></i> Toevoegen</a>,
+							<a href=""><i class="fas fa-ban"></i> Negeren</a>,
+							<a href="{{ route('suggestions.edit', $suggestion) }}" target="_blank"><i class="fas fa-edit"></i> Aanpassen</a>
+						</td>
+					</tr>
+				@endforeach
+			</table>
+		@endif
 
 		<div class="d-flex justify-content-between mt-5 mb-3">
 			<h4>Agenda</h4>
