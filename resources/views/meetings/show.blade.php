@@ -58,14 +58,14 @@
 			<tbody>
 				<tr>
 					<td>1.</td>
-					<td>2 min</td>
+					<td></td>
 					<td>Welkom, vaststellen agenda en notulist</td>
 					<td></td>
 					<td></td>
 					<td class="d-print-none"></td>
 				</tr>
 
-				<?php $end = 0; ?>
+				<?php $end = 1; ?>
 				@foreach($meeting->agendables as $agendable)
 					<tr>
 						<td>{{ $end = $loop->iteration+1 }}.</td>
