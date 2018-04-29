@@ -28,6 +28,7 @@ class TopicController extends Controller
 
     	$topic = new Topic();
     	$topic->title = $request->title;
+    	$topic->open = true;
     	$meeting->topics()->save($topic, ['added_by' => 11, 'duration' => $request->duration]);
 
     	return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
