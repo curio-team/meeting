@@ -33,5 +33,12 @@
 				<td>{{ $week->title ?? 'Onbekend' }}</td>
 			</tr>
 		</table>
+
+		<h5>Agenda</h5>
+		<ol>
+			@foreach($meeting->topics as $topic)
+				<li>{{ $topic->title }} ({{ $topic->agenda_item->added_by }}, {{ $topic->agenda_item->duration }}min)</li>
+			@endforeach
+		</ol>
 	</div>
 @endsection
