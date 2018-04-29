@@ -16,7 +16,7 @@ Route::get('/', 'CalendarController@show')->name('home');
 Route::get('/calendar/json', 'CalendarController@json')->name('calendar.json');
 
 //Suggestion
-Route::resource('suggestions', 'SuggestionController');
+Route::resource('suggestions', 'SuggestionController', ['except' => 'show']);
 
 //Schoolyears
 Route::resource('schoolyears', 'SchoolyearController');
