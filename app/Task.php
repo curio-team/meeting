@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Topic;
 
 class Task extends Model
 {
@@ -12,5 +13,10 @@ class Task extends Model
     		->as('agenda_item')
     		->withPivot(['added_by', 'duration', 'order'])
     		->withTimeStamps();
+    }
+
+    public function topic()
+    {
+    	return $this->belongsTo(Topic::class);
     }
 }

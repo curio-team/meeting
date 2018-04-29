@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Task;
 
 class Topic extends Model
 {
@@ -13,6 +14,11 @@ class Topic extends Model
     		->as('agenda_item')
     		->withPivot(['added_by', 'duration', 'order'])
     		->withTimeStamps();
+    }
+
+    public function tasks()
+    {
+    	return $this->hasMany(Task::class);
     }
 
     public function getClosedAttribute()
