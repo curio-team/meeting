@@ -15,7 +15,11 @@ class Meeting extends Model
 
 	public function agendables()
 	{
-		return collect ($this->getRelations())->collapse();
+		return collect ($this->getRelations())
+			->collapse()
+			->sortBy(function ($agendable, $key) {
+			    return $agendable->agenda_item->order ?? '999999';
+			});;
 	}
 
 	public function topics()
