@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    public function week()
+    public function meetings()
     {
-    	return $this->belongsTo(\App\Week::class);
+    	return $this->morphToMany(Meeting::class, 'agendable')
+    		->as('agenda_item')
+    		->withPivot(['added_by', 'duration', 'order'])
+    		->withTimeStamps();
     }
 }

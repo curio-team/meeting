@@ -32,7 +32,6 @@ class MeetingController extends Controller
 
     public function show(Schoolyear $schoolyear, Week $week, Meeting $meeting)
     {
-        $meeting->load('topics');
         return view('meetings.show')
             ->with(compact('schoolyear'))
             ->with(compact('week'))

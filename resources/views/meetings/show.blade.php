@@ -40,8 +40,8 @@
 			<a href="{{ route('schoolyears.weeks.meetings.topics.add', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Bestaand onderwerp</a>,
 		</p>
 		<ol>
-			@foreach($meeting->topics as $topic)
-				<li>{{ $topic->title }} ({{ $topic->agenda_item->added_by }}, {{ $topic->agenda_item->duration }}min)</li>
+			@foreach($meeting->agendables as $agendable)
+				<li>{{ $agendable->title }} ({{ $agendable->agenda_item->added_by }}, {{ $agendable->agenda_item->duration }}min)</li>
 			@endforeach
 		</ol>
 	</div>
