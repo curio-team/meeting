@@ -3,9 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Schoolyear;
 
 class Suggestion extends Model
 {
+    
+    public function schoolyears()
+    {
+    	return $this->belongsToMany(Schoolyear::class, 'suggestions_considered');
+    }
+
     public static function findForMeeting(Meeting $meeting)
     {
     	$week = $meeting->week;
