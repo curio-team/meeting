@@ -17,4 +17,9 @@ class MinuteController extends Controller
     	$type = strtolower(class_basename(get_class($agenda_item->parent)));
     	return view("minutes.$type")->with($type, $agenda_item->parent);
     }
+
+    public function comment(Topic $topic, Request $request)
+    {
+    	return [$topic, $request->all()];
+    }
 }

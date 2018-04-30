@@ -32,6 +32,7 @@ Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/sav
 
 //Minute
 Route::get('minute/agenda_item/{agenda_item}', 'MinuteController@show')->name('minute');
+Route::post('minute/topics/{topic}/comments', 'MinuteController@comment')->name('minute.comment');
 
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);

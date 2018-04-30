@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('head')
+	<link rel="stylesheet" type="text/css" href="{{ asset('trix/trix.css') }}">
+	<script type="text/javascript" src="{{ asset('trix/trix.js') }}"></script>
+@endpush
+
 @section('content')
 	
 	<div class="meeting">
@@ -21,11 +26,15 @@
 					@endforeach
 				</td>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-			</tr>
 		</table>
+		
+		<form action="{{ route('minute.comment', $topic) }}" method="POST">
+			{{ csrf_field() }}
+			<input type="hidden" name="comment" id="comment">
+			@include('layouts.trix', ['field' => 'comment'])
+			<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
+		</form>
+
 	</div>
 
 @endsection
