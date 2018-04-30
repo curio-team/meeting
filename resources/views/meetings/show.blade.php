@@ -94,7 +94,9 @@
 						<td>{{ $end = $loop->iteration+1 }}.</td>
 						<td>{{ $agenda_item->listing->duration ? $agenda_item->listing->duration.' min' : '' }}</td>
 						<td>{{ $agenda_item->title }}</td>
-						<td></td>
+						<td>
+							{{ ($agenda_item instanceof \App\Task) ? $agenda_item->slug : '' }}
+						</td>
 						<td>{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none">
 							<a href="{{ route('minute', $agenda_item->listing->id) }}" target="_blank"><i class="fas fa-gavel"></i> Notuleren</a>
