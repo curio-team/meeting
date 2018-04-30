@@ -41,20 +41,21 @@ class MeetingController extends Controller
             ->with(compact('meeting'));
     }
 
-    public function order(Schoolyear $schoolyear, Week $week, Meeting $meeting)
+    public function agenda_edit(Schoolyear $schoolyear, Week $week, Meeting $meeting)
     {
-        return view('meetings.order')
+        return view('meetings.agenda')
             ->with(compact('schoolyear'))
             ->with(compact('week'))
             ->with(compact('meeting'));
     }
 
-    public function sort(Schoolyear $schoolyear, Week $week, Meeting $meeting, Request $request)
+    public function agenda_save(Schoolyear $schoolyear, Week $week, Meeting $meeting, Request $request)
     {
-        foreach($request->order as $id => $order)
+        foreach($request->items as $id => $item)
         {
             $agenda_item = Agenda_item::find($id);
-            $agenda_item->order = $order;
+            $agenda_item->order = $item['order'];
+            $agenda_item->duration = $item['duration'];
             $agenda_item->save();
         }
 

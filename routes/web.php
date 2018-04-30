@@ -27,8 +27,8 @@ Route::post('schoolyears/{schoolyear}/weeks', 'WeekController@store')->name('sch
 
 //Meetings
 Route::resource('schoolyears.weeks.meetings', 'MeetingController', ['except' => 'index']);
-Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/order', 'MeetingController@order')->name('schoolyears.weeks.meetings.order');
-Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/sort', 'MeetingController@sort')->name('schoolyears.weeks.meetings.sort');
+Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/edit', 'MeetingController@agenda_edit')->name('schoolyears.weeks.meetings.agenda.edit');
+Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/save', 'MeetingController@agenda_save')->name('schoolyears.weeks.meetings.agenda.save');
 
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);

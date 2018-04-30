@@ -28,14 +28,14 @@
 
 		<h4 class="mt-5 mb-3">Agenda</h4>
 
-		<form action="{{ route('schoolyears.weeks.meetings.sort', [$schoolyear, $week, $meeting]) }}" method="POST">
+		<form action="{{ route('schoolyears.weeks.meetings.agenda.save', [$schoolyear, $week, $meeting]) }}" method="POST">
 			{{ csrf_field() }}
 
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th style="width: 50px;">&nbsp;</th>
-						<th style="width: 75px;">Tijd</th>
+						<th style="width: 110px;">Tijd</th>
 						<th>Onderwerp</th>
 						<th>Volgorde</th>
 					</tr>
@@ -43,7 +43,7 @@
 				<tbody>
 					<tr>
 						<td>1.</td>
-						<td>2 min</td>
+						<td></td>
 						<td>Welkom, vaststellen agenda en notulist</td>
 						<td></td>
 					</tr>
@@ -52,10 +52,12 @@
 					@foreach($meeting->agenda_items as $agenda_item)
 						<tr>
 							<td>{{ $end = $loop->iteration+1 }}.</td>
-							<td>{{ $agenda_item->listing->duration ? $agenda_item->listing->duration.' min' : '' }}</td>
+							<td>
+								<input type="number" name="items[{{ $agenda_item->listing->id }}][duration]" value="{{ $agenda_item->listing->duration ?? '' }}" min="0" style="width: 50px; text-align: right;"> min
+							</td>
 							<td>{{ $agenda_item->title }}</td>
 							<td>
-								<input type="number" name="order[{{ $agenda_item->listing->id }}]" value="{{ $agenda_item->listing->order ?? '' }}">
+								<input type="number" name="items[{{ $agenda_item->listing->id }}][order]" value="{{ $agenda_item->listing->order ?? '' }}">
 							</td>
 						</tr>
 					@endforeach

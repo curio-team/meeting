@@ -32,6 +32,10 @@
 				<th>Week</th>
 				<td>{{ $week->title ?? 'Onbekend' }}</td>
 			</tr>
+			<tr>
+				<th>Duur</th>
+				<td>&plusmn;{{ $meeting->agenda_items->sum('listing.duration') }} min</td>
+			</tr>
 		</table>
 		
 		@if(count($suggestions))
@@ -59,8 +63,8 @@
 			<div class="btn-group d-print-none">
 				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.topics.create', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Nieuw</a>
 				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.topics.add', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Bestaand</a>
-				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.order', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-sort"></i> Volgorde</a>
 				<a class="btn btn-outline-secondary" href="#"><i class="fas fa-edit"></i> Notuleren</a>
+				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.agenda.edit', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-edit"></i> Agenda aanpassen</a>
 			</div>
 		</div>
 
