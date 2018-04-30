@@ -35,7 +35,7 @@
 		<div class="comments">
 			<h5>Notulen</h5>
 			@each('minutes.comment', $topic->comments, 'comment')
-			<form action="{{ route('minute.comment', $topic) }}" method="POST">
+			<form action="{{ route('meeting.minute.comment', [$meeting, $topic]) }}" method="POST">
 				{{ csrf_field() }}
 				<input type="hidden" name="comment" id="comment">
 				@include('layouts.trix', ['field' => 'comment'])
@@ -62,7 +62,7 @@
 
 					<div href="#" class="list-group-item">
 						<div>Nieuwe actie</div>
-						<form action="{{ route('minute.task', $topic) }}" method="POST">
+						<form action="{{ route('meeting.minute.task', [$meeting, $topic]) }}" method="POST">
 							{{ csrf_field() }}
 							<input type="text" name="title" class="form-control" placeholder="Actie...">
 							<div class="d-flex justify-content-between mt-2">

@@ -13,15 +13,22 @@ use App\Comment;
 
 class MinuteController extends Controller
 {
-    public function show(Agenda_item $agenda_item)
+    
+    public function start(Meeting $meeting)
+    {
+    	return $meeting;
+    }
+
+    public function item(Meeting $meeting, Agenda_item $agenda_item)
     {
     	$type = strtolower(class_basename(get_class($agenda_item->parent)));
     	return view("minutes.$type")
     		->with($type, $agenda_item->parent)
+    		->with('meeting', $meeting)
     		->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get());
     }
 
-    public function comment(Topic $topic, Request $request)
+    public function comment(Meeting $meeting, Topic $topic, Request $request)
     {
     	$request->validate(['comment' => 'required']);
     	$comment = new Comment();
@@ -32,7 +39,7 @@ class MinuteController extends Controller
     	return redirect()->back();
     }
 
-    public function task(Topic $topic, Request $request)
+    public function task(Meeting $meeting, Topic $topic, Request $request)
     {
     	$request->validate([
     		'title' => 'required',
