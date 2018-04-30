@@ -8,7 +8,7 @@
 @section('content')
 	
 	<div class="meeting topic">
-		<div>
+		<div class="info">
 			<h2 class="page-title">{{ $topic->title }}</h2>
 			<p class="lead">Notulen voor onderwerp</p>
 
@@ -17,12 +17,14 @@
 					<th>Besproken in</th>
 					<td>
 						@foreach($topic->meetings as $meeting)
-							@if($meeting->week->number)
-								Week {{ $meeting->week->number }} - 
-							@elseif($meeting->week->description)
-								{{ $meeting->week->description }} - 
-							@endif
-							{{ $meeting->title }}
+							<a href="{{ route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]) }}">
+								@if($meeting->week->number)
+									Week {{ $meeting->week->number }} - 
+								@elseif($meeting->week->description)
+									{{ $meeting->week->description }} - 
+								@endif
+								{{ $meeting->title }}
+							</a>
 							@unless($loop->last)<br />@endunless
 						@endforeach
 					</td>
@@ -30,7 +32,8 @@
 			</table>
 		</div>
 		
-		<div>
+		<div class="comments">
+			<h5>Notulen</h5>
 			@each('minutes.comment', $topic->comments, 'comment')
 			<form action="{{ route('minute.comment', $topic) }}" method="POST">
 				{{ csrf_field() }}
@@ -39,7 +42,7 @@
 				<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
 			</form>
 		</div>
-
+		
 		<div class="tasks">
 			<h5>Acties</h5>
 			@if(count($topic->tasks))
