@@ -7,35 +7,77 @@
 
 @section('content')
 	
-	<div class="meeting">
-		<h2 class="page-title">{{ $topic->title }}</h2>
-		<p class="lead">Notulen voor onderwerp</p>
+	<div class="meeting topic">
+		<div>
+			<h2 class="page-title">{{ $topic->title }}</h2>
+			<p class="lead">Notulen voor onderwerp</p>
 
-		<table class="table table-borderless table-sm">
-			<tr>
-				<th>Besproken in</th>
-				<td>
-					@foreach($topic->meetings as $meeting)
-						@if($meeting->week->number)
-							Week {{ $meeting->week->number }} - 
-						@elseif($meeting->week->description)
-							{{ $meeting->week->description }} - 
-						@endif
-						{{ $meeting->title }}
-						@unless($loop->last)<br />@endunless
-					@endforeach
-				</td>
-			</tr>
-		</table>
-
-		@each('minutes.comment', $topic->comments, 'comment')
+			<table class="table table-borderless table-sm">
+				<tr>
+					<th>Besproken in</th>
+					<td>
+						@foreach($topic->meetings as $meeting)
+							@if($meeting->week->number)
+								Week {{ $meeting->week->number }} - 
+							@elseif($meeting->week->description)
+								{{ $meeting->week->description }} - 
+							@endif
+							{{ $meeting->title }}
+							@unless($loop->last)<br />@endunless
+						@endforeach
+					</td>
+				</tr>
+			</table>
+		</div>
 		
-		<form action="{{ route('minute.comment', $topic) }}" method="POST">
-			{{ csrf_field() }}
-			<input type="hidden" name="comment" id="comment">
-			@include('layouts.trix', ['field' => 'comment'])
-			<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
-		</form>
+		<div>
+			@each('minutes.comment', $topic->comments, 'comment')
+			<form action="{{ route('minute.comment', $topic) }}" method="POST">
+				{{ csrf_field() }}
+				<input type="hidden" name="comment" id="comment">
+				@include('layouts.trix', ['field' => 'comment'])
+				<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
+			</form>
+		</div>
+
+		<div class="tasks">
+			<h5>Acties</h5>
+			@if(count($topic->tasks))
+				<div class="list-group">
+					@foreach($topic->tasks as $task)
+						<a href="#" class="list-group-item">
+							<div class="d-flex justify-content-between align-items-center">
+								{{ $task->title }}
+								<span class="badge badge-info">{{ $task->slug }}</span>
+							</div>
+							<small class="text-muted">
+								{{ $task->owner }},
+								gemaakt op {{ $task->created_at->format('d-m-Y') }}
+							</small>
+						</a>
+					@endforeach
+
+					<div href="#" class="list-group-item">
+						<div>Nieuwe actie</div>
+						<form action="{{ route('minute.task', $topic) }}" method="POST">
+							{{ csrf_field() }}
+							<input type="text" name="title" class="form-control" placeholder="Actie...">
+							<div class="d-flex justify-content-between mt-2">
+								<input type="text" name="owner" class="form-control" placeholder="Eigenaar">
+								<select name="agendate" class="form-control ml-2">
+									<option value="0">Zet op agenda</option>
+									<option value="0">- geen -</option>
+									@foreach($meetings as $m)
+										<option value="{{ $m->id }}">{{ $m->title }} {{ $m->week->title }}</option>
+									@endforeach
+								</select>
+								<button class="ml-2 btn btn-light"><i class="fas fa-save"></i></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			@endif
+		</div>
 
 	</div>
 

@@ -19,4 +19,17 @@ class Task extends Model
     {
     	return $this->belongsTo(Topic::class);
     }
+
+    public static function generateSlug($length = 3)
+    {
+        $base = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $slug = substr(str_shuffle($base), 0, $length);
+
+        while(self::where('slug', $slug)->count())
+        {
+            $slug = substr(str_shuffle($base), 0, $length);
+        }
+
+        return $slug;
+    }
 }
