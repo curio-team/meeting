@@ -46,20 +46,7 @@
 		<div class="tasks">
 			<h5>Acties</h5>
 			<div class="list-group">
-				@if(count($topic->tasks))
-					@foreach($topic->tasks as $task)
-						<a href="#" class="list-group-item">
-							<div class="d-flex justify-content-between align-items-center">
-								{{ $task->title }}
-								<span class="badge badge-info">{{ $task->slug }}</span>
-							</div>
-							<small class="text-muted">
-								{{ $task->owner }},
-								gemaakt op {{ $task->created_at->format('d-m-Y') }}
-							</small>
-						</a>
-					@endforeach
-				@endif
+				@each('minutes.partials.task', $topic->tasks, 'task')
 
 				<div href="#" class="list-group-item">
 					<div>Nieuwe actie</div>
