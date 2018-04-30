@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Suggestion;
 use App\Schoolyear;
 use App\Week;
 use App\Meeting;
@@ -16,7 +17,43 @@ class MinuteController extends Controller
     
     public function start(Meeting $meeting)
     {
-    	return $meeting;
+    	return view('minutes.start')
+    		->with('suggestions', Suggestion::findForMeeting($meeting))
+    		->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get())
+            ->with('schoolyear', $meeting->week->schoolyear)
+            ->with('week', $meeting->week)
+            ->with('meeting', $meeting);
+    }
+
+    public function add(Meeting $meeting, Request $request)
+    {
+    	$request->validate([
+    		'title' => 'required',
+    		'duration' => 'required|integer'
+    	]);
+
+    	$topic = new Topic();
+    	$topic->title = $request->title;
+    	$topic->open = true;
+    	$meeting->topics()->save($topic, ['added_by' => 11, 'duration' => $request->duration]);
+
+    	return redirect()->back();
+    }
+
+    public function save(Meeting $meeting, Request $request)
+    {
+        foreach($request->items as $id => $item)
+        {
+            $agenda_item = Agenda_item::find($id);
+            $agenda_item->order = $item['order'];
+            $agenda_item->duration = $item['duration'];
+            $agenda_item->save();
+        }
+
+        $meeting->load(['topics', 'tasks']);
+        $next = $meeting->agenda_items->first();
+
+        return redirect()->route('meeting.minute.item', [$meeting, $next->listing->id]);
     }
 
     public function item(Meeting $meeting, Agenda_item $agenda_item)

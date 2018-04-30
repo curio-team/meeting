@@ -32,7 +32,9 @@ Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/sav
 
 //Minute
 Route::get('minute/meeting/{meeting}/start', 'MinuteController@start')->name('meeting.minute');
+Route::post('minute/meeting/{meeting}/start', 'MinuteController@save')->name('meeting.minute.save');
 Route::get('minute/meeting/{meeting}/agenda_item/{agenda_item}', 'MinuteController@item')->name('meeting.minute.item');
+Route::post('minute/meeting/{meeting}/topics', 'MinuteController@add')->name('meeting.minute.add');
 Route::post('minute/meeting/{meeting}/topics/{topic}/comments', 'MinuteController@comment')->name('meeting.minute.comment');
 Route::post('minute/meeting/{meeting}/topics/{topic}/tasks', 'MinuteController@task')->name('meeting.minute.task');
 

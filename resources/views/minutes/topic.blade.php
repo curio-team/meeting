@@ -46,9 +46,10 @@
 		<div class="tasks">
 			<h5>Acties</h5>
 			<div class="list-group">
+				
 				@each('minutes.partials.task', $topic->tasks, 'task')
 
-				<div href="#" class="list-group-item">
+				<div class="list-group-item">
 					<div>Nieuwe actie</div>
 					<form action="{{ route('meeting.minute.task', [$meeting, $topic]) }}" method="POST">
 						{{ csrf_field() }}
@@ -68,7 +69,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 @endsection
