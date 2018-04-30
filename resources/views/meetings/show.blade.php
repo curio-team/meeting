@@ -35,21 +35,23 @@
 		</table>
 		
 		@if(count($suggestions))
-			<h4 class="mt-5">Suggesties</h4>
-			<p>Er zijn suggesties aanwezig voor week {{ $week->title }}:</p>
-			<table class="table table-borderless table-sm">
-				@foreach($suggestions as $suggestion)
-					<tr>
-						<td>{{ $loop->iteration }}.</td>
-						<td>{{ $suggestion->title }}</td>
-						<td>
-							<a href="{{ route('suggestions.add', [$suggestion, $meeting]) }}"><i class="fas fa-plus"></i> Toevoegen</a>,
-							<a href="{{ route('suggestions.ignore', [$suggestion, $schoolyear]) }}"><i class="fas fa-ban"></i> Negeren</a>,
-							<a href="{{ route('suggestions.edit', $suggestion) }}" target="_blank"><i class="fas fa-edit"></i> Aanpassen</a>
-						</td>
-					</tr>
-				@endforeach
-			</table>
+			<div class="d-print-none">
+				<h4 class="mt-5">Suggesties</h4>
+				<p>Er zijn suggesties aanwezig voor week {{ $week->title }}:</p>
+				<table class="table table-borderless table-sm">
+					@foreach($suggestions as $suggestion)
+						<tr>
+							<td>{{ $loop->iteration }}.</td>
+							<td>{{ $suggestion->title }}</td>
+							<td>
+								<a href="{{ route('suggestions.add', [$suggestion, $meeting]) }}"><i class="fas fa-plus"></i> Toevoegen</a>,
+								<a href="{{ route('suggestions.ignore', [$suggestion, $schoolyear]) }}"><i class="fas fa-ban"></i> Negeren</a>,
+								<a href="{{ route('suggestions.edit', $suggestion) }}" target="_blank"><i class="fas fa-edit"></i> Aanpassen</a>
+							</td>
+						</tr>
+					@endforeach
+				</table>
+			</div>
 		@endif
 
 		<div class="d-flex justify-content-between mt-5 mb-3">
@@ -84,13 +86,13 @@
 				</tr>
 
 				<?php $end = 1; ?>
-				@foreach($meeting->agendables as $agendable)
+				@foreach($meeting->agenda_items as $agenda_item)
 					<tr>
 						<td>{{ $end = $loop->iteration+1 }}.</td>
-						<td>{{ $agendable->agenda_item->duration ? $agendable->agenda_item->duration.' min' : '' }}</td>
-						<td>{{ $agendable->title }}</td>
+						<td>{{ $agenda_item->listing->duration ? $agenda_item->listing->duration.' min' : '' }}</td>
+						<td>{{ $agenda_item->title }}</td>
 						<td></td>
-						<td>{{ $agendable->agenda_item->added_by }}</td>
+						<td>{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none"></td>
 					</tr>
 				@endforeach

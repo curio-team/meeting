@@ -7,7 +7,7 @@ use App\Suggestion;
 use App\Schoolyear;
 use App\Week;
 use App\Meeting;
-use App\Agendable;
+use App\Agenda_item;
 
 class MeetingController extends Controller
 {
@@ -53,9 +53,9 @@ class MeetingController extends Controller
     {
         foreach($request->order as $id => $order)
         {
-            $agendable = Agendable::find($id);
-            $agendable->order = $order;
-            $agendable->save();
+            $agenda_item = Agenda_item::find($id);
+            $agenda_item->order = $order;
+            $agenda_item->save();
         }
 
         return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);

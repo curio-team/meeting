@@ -49,13 +49,13 @@
 					</tr>
 
 					<?php $end = 0; ?>
-					@foreach($meeting->agendables as $agendable)
+					@foreach($meeting->agenda_items as $agenda_item)
 						<tr>
 							<td>{{ $end = $loop->iteration+1 }}.</td>
-							<td>{{ $agendable->agenda_item->duration ? $agendable->agenda_item->duration.' min' : '' }}</td>
-							<td>{{ $agendable->title }}</td>
+							<td>{{ $agenda_item->listing->duration ? $agenda_item->listing->duration.' min' : '' }}</td>
+							<td>{{ $agenda_item->title }}</td>
 							<td>
-								<input type="number" name="order[{{ $agendable->agenda_item->id }}]" value="{{ $agendable->agenda_item->order ?? '' }}">
+								<input type="number" name="order[{{ $agenda_item->listing->id }}]" value="{{ $agenda_item->listing->order ?? '' }}">
 							</td>
 						</tr>
 					@endforeach

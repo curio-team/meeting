@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 
-class Agendable extends MorphPivot
+class Agenda_item extends MorphPivot
 {
-    protected $table = 'agendables';
+    protected $table = 'agenda_items';
 
     public function getCreatedAtColumn()
     {

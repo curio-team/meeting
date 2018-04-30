@@ -19,34 +19,34 @@ class Meeting extends Model
         return $this->belongsTo(Week::class);
     }
 
-	public function agendables()
+	public function agenda_items()
 	{
 		return collect ($this->getRelations())
 			->collapse()
-			->sortBy(function ($agendable, $key) {
-			    return $agendable->agenda_item->order ?? '999999';
+			->sortBy(function ($agenda_item, $key) {
+			    return $agenda_item->listing->order ?? '999999';
 			});;
 	}
 
 	public function topics()
     {
-    	return $this->morphedByMany(Topic::class, 'agendable')
-    		->as('agenda_item')
+    	return $this->morphedByMany(Topic::class, 'agenda_item')
+    		->as('listing')
     		->withPivot(['id', 'added_by', 'duration', 'order'])
     		->withTimeStamps();
     }
 
     public function tasks()
     {
-    	return $this->morphedByMany(Task::class, 'agendable')
-    		->as('agenda_item')
+    	return $this->morphedByMany(Task::class, 'agenda_item')
+    		->as('listing')
     		->withPivot(['id', 'added_by', 'duration', 'order'])
     		->withTimeStamps();
     }
 
     public function __get($key)
     {
-        if($key == 'agendables') return $this->agendables();
+        if($key == 'agenda_items') return $this->agenda_items();
         return parent::__get($key);
     }
 

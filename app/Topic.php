@@ -10,8 +10,8 @@ class Topic extends Model
 
     public function meetings()
     {
-    	return $this->morphToMany(Meeting::class, 'agendable')
-    		->as('agenda_item')
+    	return $this->morphToMany(Meeting::class, 'agenda_item')
+    		->as('listing')
     		->withPivot(['added_by', 'duration', 'order'])
     		->withTimeStamps();
     }

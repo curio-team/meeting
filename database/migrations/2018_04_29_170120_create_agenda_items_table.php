@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgendablesTable extends Migration
+class CreateAgendaItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAgendablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('agendables', function (Blueprint $table) {
+        Schema::create('agenda_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('meeting_id')->unsigned();
-            $table->integer('agendable_id')->unsigned();
-            $table->string('agendable_type');
+            $table->integer('agenda_item_id')->unsigned();
+            $table->string('agenda_item_type');
             $table->string('added_by');
             $table->integer('duration')->unsigned()->nullable();
             $table->integer('order')->unsigned()->nullable();
