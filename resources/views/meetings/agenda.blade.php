@@ -23,8 +23,8 @@
 
 @section('content')
 	<div class="meeting">
-		<h2 class="page-title">{{ $meeting->title }}</h2>
-		<p class="lead">{{ ucfirst($meeting->date->formatLocalized('%A %e %B %Y')) }}</p>
+		
+		@include('meetings.partials.head')
 
 		<h4 class="mt-5 mb-3">Agenda</h4>
 
