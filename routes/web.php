@@ -31,7 +31,7 @@ Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/edit
 Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/save', 'MeetingController@agenda_save')->name('schoolyears.weeks.meetings.agenda.save');
 
 //Minute
-Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/minute', 'MinutController@show')->name('schoolyears.weeks.meetings.minute');
+Route::get('minute/agenda_item/{agenda_item}', 'MinuteController@show')->name('minute');
 
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);

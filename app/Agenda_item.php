@@ -11,6 +11,11 @@ class Agenda_item extends MorphPivot
 {
     protected $table = 'agenda_items';
 
+    public function parent()
+    {
+        return $this->morphTo('agenda_item');
+    }
+
     public function getCreatedAtColumn()
     {
         return 'created_at';
