@@ -34,11 +34,11 @@
 		
 		<div class="comments">
 			<h5>Notulen</h5>
-			@each('minutes.comment', $topic->comments, 'comment')
+			@each('minutes.partials.comment', $topic->comments, 'comment')
 			<form action="{{ route('meeting.minute.comment', [$meeting, $topic]) }}" method="POST">
 				{{ csrf_field() }}
 				<input type="hidden" name="comment" id="comment">
-				@include('layouts.trix', ['field' => 'comment'])
+				@include('layouts.partials.trix', ['field' => 'comment'])
 				<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
 			</form>
 		</div>
