@@ -18,7 +18,7 @@ Route::get('/calendar/json', 'CalendarController@json')->name('calendar.json');
 //Suggestion
 Route::resource('suggestions', 'SuggestionController', ['except' => 'show']);
 Route::get('/suggestions/{suggestion}/ignore/schoolyears/{schoolyear}', 'SuggestionController@ignore')->name('suggestions.ignore');
-Route::get('/suggestions/{suggestion}/add/meetings/{meeting}', 'SuggestionController@add')->name('suggestions.add');
+Route::post('/suggestions/{suggestion}/add', 'SuggestionController@add')->name('suggestions.add');
 
 //Schoolyears
 Route::resource('schoolyears', 'SchoolyearController');

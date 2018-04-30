@@ -70,11 +70,15 @@ class SuggestionController extends Controller
         return redirect()->back();
     }
 
-    public function add(Suggestion $suggestion, Meeting $meeting)
+    public function add(Suggestion $suggestion, Request $request)
     {
+        $request->validate(['agendate' => 'required|integer']);
+
         $topic = new Topic();
         $topic->title = $suggestion->title;
         $topic->open = true;
+        
+        $meeting = Meeting::find($request->agendate);
         $meeting->topics()->save($topic, ['added_by' => 11]);
 
         $suggestion->schoolyears()->attach($meeting->week->schoolyear);

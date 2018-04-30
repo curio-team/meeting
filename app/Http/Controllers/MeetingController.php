@@ -36,6 +36,7 @@ class MeetingController extends Controller
     {
         return view('meetings.show')
             ->with('suggestions', Suggestion::findForMeeting($meeting))
+            ->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get())
             ->with(compact('schoolyear'))
             ->with(compact('week'))
             ->with(compact('meeting'));
