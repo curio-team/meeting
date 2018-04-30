@@ -83,10 +83,6 @@ form, .page-title{
 	margin: 0;
 }
 
-.topic .info{
-	grid-column: 1 / span 2;
-}
-
 .topic .info table, .topic .info th, .topic .info td{
 	margin-bottom: 0;
 }

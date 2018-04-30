@@ -58,9 +58,19 @@ class MinuteController extends Controller
 
     public function item(Meeting $meeting, Agenda_item $agenda_item)
     {
+    	//Find place of this particular agenda_item in the meeting's agenda
+    	$my_place = $meeting->agenda_items->search(function ($item, $key) use ($agenda_item){
+    		return $item->listing->id == $agenda_item->id;
+    	});
+
+    	$next_place = $my_place + 1;
+    	$count = $meeting->agenda_items->count();
+    	$next = ($next_place < $count) ? $meeting->agenda_items[$next_place] : null;
+
     	$type = strtolower(class_basename(get_class($agenda_item->parent)));
     	return view("minutes.$type")
     		->with($type, $agenda_item->parent)
+    		->with('next', $next)
     		->with('meeting', $meeting)
     		->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get());
     }

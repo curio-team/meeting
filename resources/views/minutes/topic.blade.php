@@ -32,6 +32,10 @@
 			</table>
 		</div>
 		
+		<div class="next d-flex justify-content-center align-items-center">
+			<p><a href="{{ route('meeting.minute.item', [$meeting, $next->listing->id]) }}" class="btn btn-light">Volgende: {{ $next->title }} <i class="fas fa-chevron-right"></i></a></p>
+		</div>
+
 		<div class="comments">
 			<h5>Notulen</h5>
 			@each('minutes.partials.comment', $topic->comments, 'comment')

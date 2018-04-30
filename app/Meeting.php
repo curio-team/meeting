@@ -25,7 +25,8 @@ class Meeting extends Model
 			->collapse()
 			->sortBy(function ($agenda_item, $key) {
 			    return $agenda_item->listing->order ?? '999999';
-			});;
+			})
+            ->values();
 	}
 
 	public function topics()
