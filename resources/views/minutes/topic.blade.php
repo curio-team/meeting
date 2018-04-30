@@ -27,6 +27,8 @@
 				</td>
 			</tr>
 		</table>
+
+		@each('minutes.comment', $topic->comments, 'comment')
 		
 		<form action="{{ route('minute.comment', $topic) }}" method="POST">
 			{{ csrf_field() }}

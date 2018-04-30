@@ -9,6 +9,7 @@ use App\Meeting;
 use App\Topic;
 use App\Task;
 use App\Agenda_item;
+use App\Comment;
 
 class MinuteController extends Controller
 {
@@ -20,6 +21,12 @@ class MinuteController extends Controller
 
     public function comment(Topic $topic, Request $request)
     {
-    	return [$topic, $request->all()];
+    	$request->validate(['comment' => 'required']);
+    	$comment = new Comment();
+    	$comment->author = 'br10';
+    	$comment->text = $request->comment;
+
+    	$topic->comments()->save($comment);
+    	return redirect()->back();
     }
 }
