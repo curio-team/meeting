@@ -63,8 +63,8 @@
 			<div class="btn-group d-print-none">
 				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.topics.create', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Nieuw</a>
 				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.topics.add', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Bestaand</a>
-				<a class="btn btn-outline-secondary" href="#"><i class="fas fa-edit"></i> Notuleren</a>
 				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.agenda.edit', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-edit"></i> Agenda aanpassen</a>
+				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.minute', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-gavel"></i> Notuleren</a>
 			</div>
 		</div>
 

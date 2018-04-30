@@ -30,6 +30,9 @@ Route::resource('schoolyears.weeks.meetings', 'MeetingController', ['except' => 
 Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/edit', 'MeetingController@agenda_edit')->name('schoolyears.weeks.meetings.agenda.edit');
 Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/save', 'MeetingController@agenda_save')->name('schoolyears.weeks.meetings.agenda.save');
 
+//Minute
+Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/minute', 'MinutController@show')->name('schoolyears.weeks.meetings.minute');
+
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
 Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
