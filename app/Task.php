@@ -21,7 +21,7 @@ class Task extends Model
     {
     	return $this->morphToMany(Meeting::class, 'agenda_listing')
     		->as('listing')
-    		->withPivot(['added_by', 'duration', 'order'])
+    		->withPivot(['id', 'added_by', 'duration', 'order'])
     		->withTimeStamps();
     }
 
