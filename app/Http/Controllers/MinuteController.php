@@ -52,6 +52,20 @@ class MinuteController extends Controller
         }
 
         $meeting->load(['topics', 'tasks']);
+
+        //make sure _every_ item has an order set
+        $max = $meeting->agenda_items->max('listing.order');
+        foreach($meeting->agenda_items as $item)
+        {
+            if($item->listing->order == null)
+            {
+                $max++;
+                $item->listing->order = $max;
+                $item->listing->save();
+            }
+        }
+
+        $meeting->load(['topics', 'tasks']);
         $next = $meeting->agenda_items->first();
 
         return redirect()->route('meeting.minute.item', [$meeting, $next->listing->id]);
