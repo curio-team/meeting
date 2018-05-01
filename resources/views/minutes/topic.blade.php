@@ -37,7 +37,7 @@
 		<div class="comments">
 			<h5>Notulen</h5>
 			@each('minutes.partials.comment', $topic->comments, 'comment')
-			<form action="{{ route('meeting.minute.comment', [$meeting, $topic]) }}" method="POST">
+			<form action="{{ route('meeting.minute.comment', [$meeting, 'topic', $topic->id]) }}" method="POST">
 				{{ csrf_field() }}
 				<input type="hidden" name="comment" id="comment">
 				@include('layouts.partials.trix', ['field' => 'comment'])

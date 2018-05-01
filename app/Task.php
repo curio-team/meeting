@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Topic;
+use App\Comment;
 
 class Task extends Model
 {
@@ -13,6 +14,11 @@ class Task extends Model
     		->as('listing')
     		->withPivot(['added_by', 'duration', 'order'])
     		->withTimeStamps();
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function topic()

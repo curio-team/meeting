@@ -75,14 +75,17 @@ class MinuteController extends Controller
     		->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get());
     }
 
-    public function comment(Meeting $meeting, Topic $topic, Request $request)
+    public function comment(Meeting $meeting, $commentable_type, $commentable_id, Request $request)
     {
     	$request->validate(['comment' => 'required']);
     	$comment = new Comment();
     	$comment->author = 'br10';
     	$comment->text = $request->comment;
 
-    	$topic->comments()->save($comment);
+        $commentable_type = 'App\\' . ucfirst($commentable_type);
+        $commentable = $commentable_type::find($commentable_id);
+
+    	$commentable->comments()->save($comment);
     	return redirect()->back();
     }
 

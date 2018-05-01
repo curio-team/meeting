@@ -36,7 +36,7 @@ Route::post('minute/meeting/{meeting}/start', 'MinuteController@save')->name('me
 Route::get('minute/meeting/{meeting}/listing/{listing}', 'MinuteController@item')->name('meeting.minute.item');
 Route::get('minute/meeting/{meeting}/end', 'MinuteController@end')->name('meeting.minute.end');
 Route::post('minute/meeting/{meeting}/topics', 'MinuteController@add')->name('meeting.minute.add');
-Route::post('minute/meeting/{meeting}/topics/{topic}/comments', 'MinuteController@comment')->name('meeting.minute.comment');
+Route::post('minute/meeting/{meeting}/{commentable_type}/{commentable_id}/comments', 'MinuteController@comment')->name('meeting.minute.comment');
 Route::post('minute/meeting/{meeting}/topics/{topic}/tasks', 'MinuteController@task')->name('meeting.minute.task');
 
 //Topics

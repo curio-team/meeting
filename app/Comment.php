@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public function topic()
+    public function commentable()
     {
-    	return $this->belongsTo(Topic::class);
+    	return $this->morphTo();
     }
 }
