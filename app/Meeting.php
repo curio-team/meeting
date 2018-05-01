@@ -31,7 +31,7 @@ class Meeting extends Model
 
 	public function topics()
     {
-    	return $this->morphedByMany(Topic::class, 'agenda_item')
+    	return $this->morphedByMany(Topic::class, 'agenda_listing')
     		->as('listing')
     		->withPivot(['id', 'added_by', 'duration', 'order'])
     		->withTimeStamps();
@@ -39,7 +39,7 @@ class Meeting extends Model
 
     public function tasks()
     {
-    	return $this->morphedByMany(Task::class, 'agenda_item')
+    	return $this->morphedByMany(Task::class, 'agenda_listing')
     		->as('listing')
     		->withPivot(['id', 'added_by', 'duration', 'order'])
     		->withTimeStamps();

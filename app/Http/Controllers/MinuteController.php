@@ -9,7 +9,7 @@ use App\Week;
 use App\Meeting;
 use App\Topic;
 use App\Task;
-use App\Agenda_item;
+use App\Listing;
 use App\Comment;
 
 class MinuteController extends Controller
@@ -44,10 +44,10 @@ class MinuteController extends Controller
     {
         foreach($request->items as $id => $item)
         {
-            $agenda_item = Agenda_item::find($id);
-            $agenda_item->order = $item['order'];
-            $agenda_item->duration = $item['duration'];
-            $agenda_item->save();
+            $listing = Listing::find($id);
+            $listing->order = $item['order'];
+            $listing->duration = $item['duration'];
+            $listing->save();
         }
 
         $meeting->load(['topics', 'tasks']);
@@ -56,20 +56,20 @@ class MinuteController extends Controller
         return redirect()->route('meeting.minute.item', [$meeting, $next->listing->id]);
     }
 
-    public function item(Meeting $meeting, Agenda_item $agenda_item)
+    public function item(Meeting $meeting, Listing $listing)
     {
-    	//Find place of this particular agenda_item in the meeting's agenda
-    	$my_place = $meeting->agenda_items->search(function ($item, $key) use ($agenda_item){
-    		return $item->listing->id == $agenda_item->id;
+    	//Find the place of this particular agenda-item in the meeting's agenda
+    	$my_place = $meeting->agenda_items->search(function ($item, $key) use ($listing){
+    		return $item->listing->id == $listing->id;
     	});
 
     	$next_place = $my_place + 1;
     	$count = $meeting->agenda_items->count();
     	$next = ($next_place < $count) ? $meeting->agenda_items[$next_place] : null;
 
-    	$type = strtolower(class_basename(get_class($agenda_item->parent)));
+    	$type = strtolower(class_basename(get_class($listing->parent)));
     	return view("minutes.$type")
-    		->with($type, $agenda_item->parent)
+    		->with($type, $listing->parent)
     		->with('next', $next)
     		->with('meeting', $meeting)
     		->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get());

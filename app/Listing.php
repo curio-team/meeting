@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 
-class Agenda_item extends MorphPivot
+class Listing extends MorphPivot
 {
-    protected $table = 'agenda_items';
+    protected $table = 'agenda_listings';
 
     public function parent()
     {
-        return $this->morphTo('agenda_item');
+        return $this->morphTo('agenda_listing');
     }
 
     public function getCreatedAtColumn()
