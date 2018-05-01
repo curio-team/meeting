@@ -44,3 +44,6 @@ Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' 
 Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
 Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/associate', 'TopicController@associate')->name('schoolyears.weeks.meetings.topics.associate');
 
+//Tasks
+Route::post('tasks/{task}/state', 'TaskController@change_state')->name('tasks.state');
+

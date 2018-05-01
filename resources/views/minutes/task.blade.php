@@ -36,13 +36,14 @@
 					<th>Eigenaar</th>
 					<td>{{ $task->owner }}</td>
 				</tr>
+
+				@if($task->topic != null)
+					<tr>
+						<th>Bij onderwerp</th>
+						<td>{{ $task->topic->title }}</td>
+					</tr>
+				@endif
 			</table>
-			
-			<div class="btn-group mt-3">
-				<a href="" class="btn btn-outline-secondary"><i class="fas fa-eye"></i> Geresoneerd</a>
-				<a href="" class="btn btn-outline-secondary"><i class="fas fa-anchor"></i> Geborgd</a>
-				<a href="" class="btn btn-outline-secondary"><i class="fas fa-check"></i> In envelop</a>
-			</div>
 		</div>
 		
 		@include('minutes.partials.next')
@@ -57,6 +58,54 @@
 				<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
 			</form>
 		</div>
+		
+		<div>
+			<h5>Status</h5>
+			<form action="{{ route('tasks.state', $task) }}" method="POST" class="m-0">
+				{{ csrf_field() }}
+				<div class="list-group">
+					<span class="list-group-item list-group-item-light">
+						<i class="fas fa-fw fa-dot-circle"></i> Gemaakt op {{ $task->created_at }}
+					</span>
+
+					@if($task->resonated_at == null)
+						<button type="submit" name="field" value="resonated_at" class="list-group-item list-group-item-action">
+							<i class="fas fa-fw fa-eye"></i> Nu resoneren
+						</button>
+					@else
+						<span class="list-group-item list-group-item-light">
+							<i class="fas fa-fw fa-eye"></i> Geresoneerd op {{ $task->resonated_at }}
+						</span>
+					@endif
+
+					@if($task->secured_at == null)
+						<button type="submit" name="field" value="secured_at" class="list-group-item list-group-item-action">
+							<i class="fas fa-fw fa-anchor"></i> Nu borgen
+						</button>
+					@else
+						<span class="list-group-item list-group-item-light">
+							<i class="fas fa-fw fa-anchor"></i> Geborgd op {{ $task->secured_at }}
+						</span>
+					@endif
+
+					@if($task->filed_at == null)
+						<button type="submit" name="field" value="filed_at" class="list-group-item list-group-item-action">
+							<i class="fas fa-fw fa-check"></i> Afronden: in envelop
+						</button>
+					@else
+						<span class="list-group-item list-group-item-light">
+							<i class="fas fa-fw fa-check"></i> Afgerond op {{ $task->filed_at }}
+						</span>
+					@endif
+				</div>
+			</form>
+		</div>
 	</div>
+
+	@if($task->topic != null)
+		<hr>
+		<h2>{{ $task->topic->title }}</h2>
+	@endif
+
 
 @endsection

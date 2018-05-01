@@ -8,6 +8,15 @@ use App\Comment;
 
 class Task extends Model
 {
+    
+    protected $dates = [
+        'resonated_at',
+        'secured_at',
+        'filed_at',
+        'created_at',
+        'updated_at'
+    ];
+
     public function meetings()
     {
     	return $this->morphToMany(Meeting::class, 'agenda_listing')

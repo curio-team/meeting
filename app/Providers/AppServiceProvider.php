@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         setlocale(LC_ALL, 'nl_NL', 'nld_nld', 'Dutch_Netherlands', 'Dutch');
         Carbon::setLocale(config('app.locale'));
+        Carbon::setToStringFormat('d-m-Y');
 
         $registrar = new \App\Routing\ResourceRegistrar($this->app['router']);
         $this->app->bind('Illuminate\Routing\ResourceRegistrar', function () use ($registrar) {
