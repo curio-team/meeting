@@ -79,7 +79,14 @@ form, .page-title{
 	margin-top: 2em;
 }
 
-.topic h2{
+.task{
+	display: grid;
+	grid-template-columns: 3fr 2fr;
+	grid-gap: 1.5em;
+	margin-top: 2em;
+}
+
+.topic h2, .task h2{
 	margin: 0;
 }
 
