@@ -41,6 +41,27 @@ class MinuteController extends Controller
     	return redirect()->back();
     }
 
+    public function add_go(Meeting $meeting, Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'added_by' => 'required|alpha_num'
+        ]);
+
+        $order = $meeting->agenda_items->max('listing.order') + 1;
+
+        $topic = new Topic();
+        $topic->title = $request->title;
+        $topic->open = true;
+        $meeting->topics()->save($topic, ['added_by' => $request->added_by, 'order' => $order]);
+        
+        //Retrieve the listing we just saved in a quirky way
+        //This works because the topic was just created, and can therefor belong only to one meeting
+        $listing = $topic->meetings->first()->listing;
+
+        return redirect()->route('meeting.minute.item', [$meeting, $listing->id]);
+    }
+
     public function save(Meeting $meeting, Request $request)
     {
         foreach($request->items as $id => $item)
@@ -125,5 +146,10 @@ class MinuteController extends Controller
     	}
 
     	return redirect()->back();
+    }
+
+    public function end(Meeting $meeting)
+    {
+        return view('minutes.end')->with(compact('meeting'));
     }
 }
