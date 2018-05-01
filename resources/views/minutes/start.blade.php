@@ -37,6 +37,7 @@
                 		<span class="input-group-text">min</span>
                 	</div>
                 </div>
+                <input type="text" name="added_by" class="form-control ml-3" placeholder="Toegevoegd door">
 				<button type="submit" class="btn btn-outline-secondary ml-3" href="#"><i class="fas fa-plus"></i> Toevoegen</button>
             </form>
 		</div>

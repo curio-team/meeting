@@ -29,13 +29,14 @@ class MinuteController extends Controller
     {
     	$request->validate([
     		'title' => 'required',
-    		'duration' => 'required|integer'
+    		'duration' => 'required|integer',
+            'added_by' => 'required|alpha_num'
     	]);
 
     	$topic = new Topic();
     	$topic->title = $request->title;
     	$topic->open = true;
-    	$meeting->topics()->save($topic, ['added_by' => 11, 'duration' => $request->duration]);
+    	$meeting->topics()->save($topic, ['added_by' => $request->added_by, 'duration' => $request->duration]);
 
     	return redirect()->back();
     }
