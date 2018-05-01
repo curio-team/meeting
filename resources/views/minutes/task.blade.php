@@ -13,7 +13,7 @@
 				{{ $task->title }}
 				<span class="badge badge-info">{{ $task->slug }}</span>
 			</h2>
-			<p class="lead">Notulen voor taak</p>
+			<p class="lead">Notulen voor actie</p>
 
 			<table class="table table-borderless table-sm">
 				<tr>
