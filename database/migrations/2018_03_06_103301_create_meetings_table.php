@@ -22,7 +22,7 @@ class CreateMeetingsTable extends Migration
             $table->timestamps();
 
             $table->foreign('week_id')
-                    ->references('id')->on('meetings')
+                    ->references('id')->on('weeks')
                     ->onDelete('cascade');
         });
     }
