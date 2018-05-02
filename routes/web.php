@@ -44,7 +44,11 @@ Route::post('minute/meeting/{meeting}/topics/{topic}/tasks', 'MinuteController@t
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
 Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
 Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/associate', 'TopicController@associate')->name('schoolyears.weeks.meetings.topics.associate');
+Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close');
 
 //Tasks
 Route::post('tasks/{task}/state', 'TaskController@change_state')->name('tasks.state');
+
+//Listings
+Route::post('listings/{listing}/meetings', 'ListingController@attach')->name('listings.attach');
 

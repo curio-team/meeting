@@ -103,6 +103,7 @@ class MinuteController extends Controller
 
     	$type = strtolower(class_basename(get_class($listing->parent)));
     	return view("minutes.$type")
+            ->with('listing', $listing)
     		->with($type, $listing->parent)
     		->with('next', $next)
     		->with('meeting', $meeting)

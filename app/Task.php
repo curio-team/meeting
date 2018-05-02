@@ -35,6 +35,16 @@ class Task extends Model
     	return $this->belongsTo(Topic::class);
     }
 
+    public function getOpenAttribute()
+    {
+        return ($this->filed_at == null) ? true : false;
+    }
+
+    public function getClosedAttribute()
+    {
+        return !$this->getOpenAttribute();
+    }
+
     public static function generateSlug($length = 3)
     {
         $base = '0123456789abcdefghijklmnopqrstuvwxyz';
