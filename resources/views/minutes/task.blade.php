@@ -21,14 +21,14 @@
 				<tr>
 					<th>Besproken in</th>
 					<td>
-						@foreach($task->meetings as $meeting)
-							<a href="{{ route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]) }}">
-								@if($meeting->week->number)
-									Week {{ $meeting->week->number }} - 
-								@elseif($meeting->week->description)
-									{{ $meeting->week->description }} - 
+						@foreach($task->meetings as $m)
+							<a href="{{ route('schoolyears.weeks.meetings.show', [$m->week->schoolyear, $m->week, $m]) }}">
+								@if($m->week->number)
+									Week {{ $m->week->number }} - 
+								@elseif($m->week->description)
+									{{ $m->week->description }} - 
 								@endif
-								{{ $meeting->title }}
+								{{ $m->title }}
 							</a>
 							@unless($loop->last)<br />@endunless
 						@endforeach
