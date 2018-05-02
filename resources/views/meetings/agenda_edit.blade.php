@@ -28,8 +28,9 @@
 		@include('meetings.partials.head')
 
 		<h4 class="mt-5 mb-3">Agenda</h4>
-		<form action="{{ route('meetings.listings.save', $meeting) }}" method="POST">
+		<form action="{{ route('meetings.listings.update', $meeting) }}" method="POST">
 			{{ csrf_field() }}
+            {{ method_field('PATCH') }}
 
 			@include('meetings.partials.edit')
 			<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Opslaan</button>

@@ -50,7 +50,7 @@ class MeetingController extends Controller
             ->with('meeting', $meeting);
     }
 
-    public function agenda_save(Meeting $meeting, Request $request)
+    public function agenda_update(Meeting $meeting, Request $request)
     {
         foreach($request->items as $id => $item)
         {
