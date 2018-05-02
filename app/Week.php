@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use App\Meeting;
-use App\schoolyear;
+use App\Schoolyear;
 
 class Week extends Model
 {
