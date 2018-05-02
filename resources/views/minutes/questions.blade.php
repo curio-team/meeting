@@ -4,7 +4,7 @@
  
 	<h2 class="page-title">Rondvraag</h2>
 
-	<div class="list-group mt-3">
+	<div class="list-group my-4">
      	<form action="{{ route('meetings.topics.store', $meeting) }}" method="POST" class="list-group-item d-flex justify-content-between align-items-center m-0">
             {{ csrf_field() }}
             <input type="hidden" name="go" value="1">
@@ -14,6 +14,11 @@
         </form>
 	</div>
 
-    <a href="{{ route('meetings.minutes.show', $meeting) }}" class="btn btn-success mt-3"><i class="fas fa-check"></i> Afronden</a>
+    <form action="{{ route('meetings.minutes.close', $meeting) }}" method="POST" class="mt-0 mb-4">
+        {{ csrf_field() }}
+        <button type="submit" class="btn btn-lg btn-success">
+            <i class="fas fa-gavel"></i> Vergadering sluiten
+        </button>
+    </form>
 
 @endsection

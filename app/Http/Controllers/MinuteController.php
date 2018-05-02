@@ -43,9 +43,9 @@ class MinuteController extends Controller
             ->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get());
     }
 
-    public function end(Meeting $meeting)
+    public function questions(Meeting $meeting)
     {
-        return view('minutes.end')->with(compact('meeting'));
+        return view('minutes.questions')->with(compact('meeting'));
     }
     
     public function store_topic(Meeting $meeting, Request $request)
