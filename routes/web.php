@@ -33,13 +33,13 @@ Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')-
 Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->name('meetings.listings.update');
 
 //Meetings.Topics
-Route::post('meetings/{meeting}/topics', 'MinuteControllerBackground@store_topic')->name('meetings.topics.store');
+Route::post('meetings/{meeting}/topics', 'MinuteController@store_topic')->name('meetings.topics.store');
 
 //Minute
-Route::get('meetings/{meeting}/minutes/start', 'MinuteControllerShow@start')->name('meetings.minutes.start');
-Route::get('meetings/{meeting}/minutes/listing/{listing}', 'MinuteControllerShow@item')->name('meetings.minutes.listing');
-Route::get('meetings/{meeting}/minutes/end', 'MinuteControllerShow@end')->name('meetings.minutes.end');
-Route::get('meetings/{meeting}/minutes/show', 'MinuteControllerShow@show')->name('meetings.minutes.show');
+Route::get('meetings/{meeting}/minutes/start', 'MinuteController@start')->name('meetings.minutes.start');
+Route::get('meetings/{meeting}/minutes/listing/{listing}', 'MinuteController@item')->name('meetings.minutes.listing');
+Route::get('meetings/{meeting}/minutes/end', 'MinuteController@end')->name('meetings.minutes.end');
+Route::get('meetings/{meeting}/minutes/show', 'MinuteController@show')->name('meetings.minutes.show');
 
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
