@@ -11,7 +11,7 @@
 
 	<div class="meeting topic">
 		<div class="info">
-			<h2 class="page-title">{{ $topic->title }}</h2>
+			<h2 class="page-title">{{ $listing->order+1 }}. {{ $topic->title }}</h2>
 			<p class="lead">Notulen voor onderwerp</p>
 
 			<table class="table table-borderless table-sm">

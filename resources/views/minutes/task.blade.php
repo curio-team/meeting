@@ -12,7 +12,7 @@
 	<div class="meeting task">
 		<div class="info">
 			<h2 class="page-title d-flex justify-content-between align-items-center">
-				{{ $task->title }}
+				{{ $listing->order+1 }}. {{ $task->title }}
 				<span class="badge badge-info">{{ $task->slug }}</span>
 			</h2>
 			<p class="lead">Notulen voor actie</p>
