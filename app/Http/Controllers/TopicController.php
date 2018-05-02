@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Schoolyear;
 use App\Week;
 use App\Meeting;
@@ -28,7 +29,7 @@ class TopicController extends Controller
 
     	$topic = new Topic();
     	$topic->title = $request->title;
-    	$meeting->topics()->save($topic, ['added_by' => 'user_todo', 'duration' => $request->duration]);
+    	$meeting->topics()->save($topic, ['added_by' => Auth::id(), 'duration' => $request->duration]);
 
     	return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
     }
@@ -55,7 +56,7 @@ class TopicController extends Controller
     		'duration' => 'required|integer'
     	]);
 
-    	$meeting->topics()->attach($request->topic, ['added_by' => 11, 'duration' => $request->duration]);
+    	$meeting->topics()->attach($request->topic, ['added_by' => Auth::id(), 'duration' => $request->duration]);
 
     	return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
     }

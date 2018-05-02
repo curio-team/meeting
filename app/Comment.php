@@ -1,9 +1,9 @@
 <?php
 
 namespace App;
-use App\Topic;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Comment extends Model
 {

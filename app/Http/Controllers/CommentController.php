@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Topic;
 use App\Task;
 use App\Comment;
@@ -25,7 +26,7 @@ class CommentController extends Controller
     {
     	$request->validate(['comment' => 'required']);
     	$comment = new Comment();
-    	$comment->author = 'user_todo';
+    	$comment->author = Auth::id();
     	$comment->text = $request->comment;
 
     	$commentable->comments()->save($comment);

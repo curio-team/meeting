@@ -7,6 +7,7 @@ use App\Schoolyear;
 use App\Meeting;
 use App\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SuggestionController extends Controller
 {
@@ -78,7 +79,7 @@ class SuggestionController extends Controller
         $topic->title = $suggestion->title;
         
         $meeting = Meeting::find($request->meeting);
-        $meeting->topics()->save($topic, ['added_by' => 11]);
+        $meeting->topics()->save($topic, ['added_by' => Auth::id()]);
 
         $suggestion->schoolyears()->attach($meeting->week->schoolyear);
         return redirect()->back();
