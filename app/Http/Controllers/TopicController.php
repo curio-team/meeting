@@ -60,4 +60,10 @@ class TopicController extends Controller
     	return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
     }
     
+    public function close(Topic $topic, Request $request)
+    {
+        $topic->closed_at = $topic->freshTimestamp();
+        $topic->save();
+        return redirect()->back();
+    }
 }

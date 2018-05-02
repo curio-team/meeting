@@ -37,16 +37,19 @@
 		<div class="comments">
 			<h5>Notulen</h5>
 			@each('minutes.partials.comment', $topic->comments, 'comment')
-			<form action="{{ route('meeting.minute.comment', [$meeting, 'topic', $topic->id]) }}" method="POST">
-				{{ csrf_field() }}
-				<input type="hidden" name="comment" id="comment">
-				@include('layouts.partials.trix', ['field' => 'comment'])
-				<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
-			</form>
+
+			@if($topic->open)
+				<form action="{{ route('meeting.minute.comment', [$meeting, 'topic', $topic->id]) }}" method="POST">
+					{{ csrf_field() }}
+					<input type="hidden" name="comment" id="comment">
+					@include('layouts.partials.trix', ['field' => 'comment'])
+					<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
+				</form>
+			@endif
 		</div>
 		<div>
 			<h5>Status</h5>
-			<form action="" method="POST">
+			<form action="{{ route('topics.close', $topic) }}" method="POST">
 				{{ csrf_field() }}
 				<div class="list-group">
 					<span class="list-group-item list-group-item-light">
@@ -64,19 +67,21 @@
 					@endif
 				</div>
 			</form>
-
-			<h5 class="mt-3">Vooruitschuiven</h5>
-			<form action="" class="m-0">
-				<div class="input-group">
-					<select name="agendate" class="form-control">
-						<option value="0">Zet op agenda voor komende meeting</option>
-						@foreach($meetings as $m)
-							<option value="{{ $m->id }}">{{ $m->title }} {{ $m->week->title }}</option>
-						@endforeach
-					</select>
-					<div class="input-group-append"><button class="btn"><i class="fas fa-plus"></i></button></div>
-				</div>
-			</form>
+			
+			@if($topic->open)
+				<h5 class="mt-3">Vooruitschuiven</h5>
+				<form action="" class="m-0">
+					<div class="input-group">
+						<select name="agendate" class="form-control">
+							<option value="0">Zet op agenda voor komende meeting</option>
+							@foreach($meetings as $m)
+								<option value="{{ $m->id }}">{{ $m->title }} {{ $m->week->title }}</option>
+							@endforeach
+						</select>
+						<div class="input-group-append"><button class="btn"><i class="fas fa-plus"></i></button></div>
+					</div>
+				</form>
+			@endif
 		</div>
 	</div>
 
