@@ -9,6 +9,12 @@ use App\Comment;
 class Topic extends Model
 {
 
+    protected $dates = [
+        'closed_at',
+        'created_at',
+        'updated_at'
+    ];
+
     public function meetings()
     {
     	return $this->morphToMany(Meeting::class, 'agenda_listing')
@@ -27,8 +33,13 @@ class Topic extends Model
     	return $this->hasMany(Task::class);
     }
 
+    public function getOpenAttribute()
+    {
+        return ($this->closed_at == null) ? true : false;
+    }
+
     public function getClosedAttribute()
     {
-    	return !$this->open;
+    	return !$this->getOpenAttribute();
     }
 }

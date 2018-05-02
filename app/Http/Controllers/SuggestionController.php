@@ -76,7 +76,6 @@ class SuggestionController extends Controller
 
         $topic = new Topic();
         $topic->title = $suggestion->title;
-        $topic->open = true;
         
         $meeting = Meeting::find($request->agendate);
         $meeting->topics()->save($topic, ['added_by' => 11]);

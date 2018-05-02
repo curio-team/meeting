@@ -35,7 +35,6 @@ class MinuteController extends Controller
 
     	$topic = new Topic();
     	$topic->title = $request->title;
-    	$topic->open = true;
     	$meeting->topics()->save($topic, ['added_by' => $request->added_by, 'duration' => $request->duration]);
 
     	return redirect()->back();
@@ -52,7 +51,6 @@ class MinuteController extends Controller
 
         $topic = new Topic();
         $topic->title = $request->title;
-        $topic->open = true;
         $meeting->topics()->save($topic, ['added_by' => $request->added_by, 'order' => $order]);
         
         //Retrieve the listing we just saved in a quirky way

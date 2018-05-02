@@ -16,7 +16,7 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->boolean('open');
+            $table->timestamp('closed_at')->nullable();
             $table->timestamps();
         });
     }
