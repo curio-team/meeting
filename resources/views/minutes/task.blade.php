@@ -55,7 +55,7 @@
 			@each('minutes.partials.comment', $task->comments, 'comment')
 
 			@if($task->open)
-				<form action="{{ route('meeting.minute.comment', [$meeting, 'task', $task->id]) }}" method="POST">
+				<form action="{{ route('tasks.comments.store', $task) }}" method="POST">
 					{{ csrf_field() }}
 					<input type="hidden" name="comment" id="comment">
 					@include('layouts.partials.trix', ['field' => 'comment'])

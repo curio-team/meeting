@@ -39,7 +39,6 @@ Route::get('meetings/{meeting}/minute/end', 'MinuteController@end')->name('meeti
 Route::post('minute/meeting/{meeting}/start', 'MinuteController@save')->name('meeting.minute.save');
 Route::post('minute/meeting/{meeting}/topics', 'MinuteController@add')->name('meeting.minute.add');
 Route::post('minute/meeting/{meeting}/topics/go', 'MinuteController@add_go')->name('meeting.minute.add_go');
-Route::post('minute/meeting/{meeting}/{commentable_type}/{commentable_id}/comments', 'MinuteController@comment')->name('meeting.minute.comment');
 Route::post('minute/meeting/{meeting}/topics/{topic}/tasks', 'MinuteController@task')->name('meeting.minute.task');
 
 //Topics
@@ -50,6 +49,10 @@ Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close
 
 //Tasks
 Route::post('tasks/{task}/state', 'TaskController@change_state')->name('tasks.state');
+
+//Comments
+Route::post('topics/{topic}/comments', 'CommentController@store_topic')->name('topics.comments.store');
+Route::post('tasks/{task}/comments', 'CommentController@store_task')->name('tasks.comments.store');
 
 //Listings
 Route::post('listings/{listing}/meetings', 'ListingController@attach')->name('listings.attach');
