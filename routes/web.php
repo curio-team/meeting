@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth', 'teacher']], function() {
 
 	//Calendar
 	Route::get('/', 'CalendarController@show')->name('home');
