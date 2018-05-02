@@ -5,6 +5,21 @@
 	<script type="text/javascript" src="{{ asset('trix/trix.js') }}"></script>
 @endpush
 
+@section('more-breadcrumbs')
+    <li class="breadcrumb-item">
+        <a href="{{ route('schoolyears.show', $meeting->week->schoolyear) }}">{{ $meeting->week->schoolyear->title }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ $meeting->week->title ?? "{$meeting->week->start->format('d-m')} - {$meeting->week->end->format('d-m')}" }}
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{ route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]) }}">{{ $meeting->title }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ $listing->order+1 }}. {{ $task->title }}   
+    </li>
+@endsection
+
 @section('content')
 	
 	@include('layouts.partials.status')
