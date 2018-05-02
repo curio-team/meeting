@@ -11,50 +11,62 @@
 |
 */
 
-//Calendar
-Route::get('/', 'CalendarController@show')->name('home');
-Route::get('/calendar/json', 'CalendarController@json')->name('calendar.json');
+Route::group(['middleware' => 'auth'], function() {
 
-//Suggestions
-Route::resource('suggestions', 'SuggestionController', ['except' => 'show']);
-Route::get('/suggestions/{suggestion}/ignore/schoolyears/{schoolyear}', 'SuggestionController@ignore')->name('suggestions.ignore');
-Route::post('/suggestions/{suggestion}/meetings', 'SuggestionController@attach')->name('suggestions.attach');
+	//Calendar
+	Route::get('/', 'CalendarController@show')->name('home');
+	Route::get('/calendar/json', 'CalendarController@json')->name('calendar.json');
 
-//Schoolyears
-Route::resource('schoolyears', 'SchoolyearController');
-Route::get('schoolyears/{schoolyear}/weeks', 'WeekController@show')->name('schoolyears.weeks.show');
-Route::post('schoolyears/{schoolyear}/weeks', 'WeekController@store')->name('schoolyears.weeks.store');
+	//Suggestions
+	Route::resource('suggestions', 'SuggestionController', ['except' => 'show']);
+	Route::get('/suggestions/{suggestion}/ignore/schoolyears/{schoolyear}', 'SuggestionController@ignore')->name('suggestions.ignore');
+	Route::post('/suggestions/{suggestion}/meetings', 'SuggestionController@attach')->name('suggestions.attach');
 
-//Meetings
-Route::resource('schoolyears.weeks.meetings', 'MeetingController', ['except' => 'index']);
+	//Schoolyears
+	Route::resource('schoolyears', 'SchoolyearController');
+	Route::get('schoolyears/{schoolyear}/weeks', 'WeekController@show')->name('schoolyears.weeks.show');
+	Route::post('schoolyears/{schoolyear}/weeks', 'WeekController@store')->name('schoolyears.weeks.store');
 
-//Meetings.Listings
-Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')->name('meetings.listings.edit');
-Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->name('meetings.listings.update');
+	//Meetings
+	Route::resource('schoolyears.weeks.meetings', 'MeetingController', ['except' => 'index']);
 
-//Meetings.Topics
-Route::post('meetings/{meeting}/topics', 'MinuteController@store_topic')->name('meetings.topics.store');
+	//Meetings.Listings
+	Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')->name('meetings.listings.edit');
+	Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->name('meetings.listings.update');
 
-//Minute
-Route::get('meetings/{meeting}/minutes/start', 'MinuteController@start')->name('meetings.minutes.start');
-Route::get('meetings/{meeting}/minutes/listings/{listing}', 'MinuteController@item')->name('meetings.minutes.listing');
-Route::get('meetings/{meeting}/minutes/questions', 'MinuteController@questions')->name('meetings.minutes.questions');
-Route::post('meetings/{meeting}/minutes/close', 'MinuteController@close')->name('meetings.minutes.close');
+	//Meetings.Topics
+	Route::post('meetings/{meeting}/topics', 'MinuteController@store_topic')->name('meetings.topics.store');
 
-//Topics
-Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
-Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
-Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/associate', 'TopicController@associate')->name('schoolyears.weeks.meetings.topics.associate');
-Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close');
+	//Minute
+	Route::get('meetings/{meeting}/minutes/start', 'MinuteController@start')->name('meetings.minutes.start');
+	Route::get('meetings/{meeting}/minutes/listings/{listing}', 'MinuteController@item')->name('meetings.minutes.listing');
+	Route::get('meetings/{meeting}/minutes/questions', 'MinuteController@questions')->name('meetings.minutes.questions');
+	Route::post('meetings/{meeting}/minutes/close', 'MinuteController@close')->name('meetings.minutes.close');
 
-//Tasks
-Route::post('tasks/{task}/state', 'TaskController@change_state')->name('tasks.state');
-Route::post('topics/{topic}/tasks', 'TaskController@store_with_topic')->name('topics.tasks.store');
+	//Topics
+	Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
+	Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
+	Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/associate', 'TopicController@associate')->name('schoolyears.weeks.meetings.topics.associate');
+	Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close');
 
-//Comments
-Route::post('topics/{topic}/comments', 'CommentController@store_topic')->name('topics.comments.store');
-Route::post('tasks/{task}/comments', 'CommentController@store_task')->name('tasks.comments.store');
+	//Tasks
+	Route::post('tasks/{task}/state', 'TaskController@change_state')->name('tasks.state');
+	Route::post('topics/{topic}/tasks', 'TaskController@store_with_topic')->name('topics.tasks.store');
 
-//Listings
-Route::post('listings/{listing}/meetings', 'ListingController@attach')->name('listings.attach');
+	//Comments
+	Route::post('topics/{topic}/comments', 'CommentController@store_topic')->name('topics.comments.store');
+	Route::post('tasks/{task}/comments', 'CommentController@store_task')->name('tasks.comments.store');
+
+	//Listings
+	Route::post('listings/{listing}/meetings', 'ListingController@attach')->name('listings.attach');
+
+});
+
+//Login
+Route::get('/amoclient/ready', function(){
+	return redirect()->route('home');
+});
+Route::get('/login', function(){
+	return redirect('/amoclient/redirect');
+})->name('login');
 

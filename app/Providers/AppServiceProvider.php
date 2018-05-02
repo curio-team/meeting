@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         setlocale(LC_ALL, 'nl_NL', 'nld_nld', 'Dutch_Netherlands', 'Dutch');
         Carbon::setLocale(config('app.locale'));
         Carbon::setToStringFormat('d-m-Y');
