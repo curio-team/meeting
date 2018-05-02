@@ -2,7 +2,7 @@
 
 @section('more-breadcrumbs')
     <li class="breadcrumb-item">
-        <a href="{{ route('schoolyears.show', $meeting->week->schoolyear) }}">{{ $meeting->week->schoolyear->title }}</a>
+        <a href="{{ route('schoolyears.show', $schoolyear) }}">{{ $schoolyear->title }}</a>
     </li>
     <li class="breadcrumb-item">
     	Weken benoemen
