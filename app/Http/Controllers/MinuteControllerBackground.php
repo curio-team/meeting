@@ -32,7 +32,7 @@ class MinuteControllerBackground extends Controller
             //This works because the topic was just created, and can therefor belong only to one meeting
             $listing = $topic->meetings->first()->listing;
 
-            return redirect()->route('meetings.minute.listing', [$meeting, $listing->id]);
+            return redirect()->route('meetings.minutes.listing', [$meeting, $listing->id]);
         }
 
     	return redirect()->back();

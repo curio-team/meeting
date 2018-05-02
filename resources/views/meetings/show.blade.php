@@ -30,7 +30,7 @@
 				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.topics.create', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Nieuw</a>
 				<a class="btn btn-outline-secondary" href="{{ route('schoolyears.weeks.meetings.topics.add', [$schoolyear, $week, $meeting]) }}"><i class="fas fa-plus"></i> Bestaand</a>
 				<a class="btn btn-outline-secondary" href="{{ route('meetings.listings.edit', $meeting) }}"><i class="fas fa-edit"></i> Agenda aanpassen</a>
-				<a class="btn btn-outline-secondary" href="{{ route('meetings.minute.start', $meeting) }}"><i class="fas fa-gavel"></i> Start notuleren</a>
+				<a class="btn btn-outline-secondary" href="{{ route('meetings.minutes.start', $meeting) }}"><i class="fas fa-gavel"></i> Start notuleren</a>
 			</div>
 		</div>
 
@@ -66,7 +66,7 @@
 						</td>
 						<td>{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none">
-							<a href="{{ route('meetings.minute.listing', [$meeting, $agenda_item->listing->id]) }}" target="_blank"><i class="fas fa-gavel"></i> Notuleren</a>
+							<a href="{{ route('meetings.minutes.listing', [$meeting, $agenda_item->listing->id]) }}" target="_blank"><i class="fas fa-gavel"></i> Notuleren</a>
 						</td>
 					</tr>
 				@endforeach

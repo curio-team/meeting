@@ -78,7 +78,7 @@ class MeetingController extends Controller
         {
             $meeting->load(['topics', 'tasks']);
             $next = $meeting->agenda_items->first();
-            return redirect()->route('meetings.minute.listing', [$meeting, $next->listing->id]);
+            return redirect()->route('meetings.minutes.listing', [$meeting, $next->listing->id]);
         }
 
         return redirect()->route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]);
