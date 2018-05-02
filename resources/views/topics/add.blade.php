@@ -2,16 +2,16 @@
 
 @section('more-breadcrumbs')
     <li class="breadcrumb-item">
-    	{{ $schoolyear->title }}
+        <a href="{{ route('schoolyears.show', $meeting->week->schoolyear) }}">{{ $meeting->week->schoolyear->title }}</a>
     </li>
     <li class="breadcrumb-item">
-    	{{ $week->title ?? "{$week->start->format('d-m')} - {$week->end->format('d-m')}" }}
+        {{ $meeting->week->title ?? "{$meeting->week->start->format('d-m')} - {$meeting->week->end->format('d-m')}" }}
     </li>
     <li class="breadcrumb-item">
-    	{{ $meeting->title }}
+        <a href="{{ route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]) }}">{{ $meeting->title }}</a>
     </li>
     <li class="breadcrumb-item">
-    	Bestaand onderwerp
+        Onderwerp toevoegen  
     </li>
 @endsection
 
