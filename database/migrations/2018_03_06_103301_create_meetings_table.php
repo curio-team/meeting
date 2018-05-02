@@ -18,6 +18,7 @@ class CreateMeetingsTable extends Migration
             $table->integer('week_id')->unsigned();
             $table->date('date');
             $table->string('title');
+            $table->timestamp('closed_at')->nullable();
             $table->timestamps();
 
             $table->foreign('week_id')

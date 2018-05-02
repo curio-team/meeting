@@ -48,6 +48,18 @@ class MinuteController extends Controller
         return view('minutes.questions')->with(compact('meeting'));
     }
     
+    public function close(Meeting $meeting)
+    {
+        $meeting->closed_at = $meeting->freshTimestamp();
+        $meeting->save();
+        return redirect()->route('meetings.minutes.show', $meeting);
+    }
+
+    public function show(Meeting $meeting)
+    {
+        return $meeting;
+    }
+
     public function store_topic(Meeting $meeting, Request $request)
     {
         $request->validate([
