@@ -34,12 +34,112 @@ class MeetingController extends Controller
 
     public function show(Schoolyear $schoolyear, Week $week, Meeting $meeting)
     {
+        if($meeting->closed) return $this->show_minutes($schoolyear, $week, $meeting);
         return view('meetings.show')
             ->with('suggestions', Suggestion::findForMeeting($meeting))
             ->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get())
             ->with(compact('schoolyear'))
             ->with(compact('week'))
             ->with(compact('meeting'));
+    }
+
+    public function show_minutes(Schoolyear $schoolyear, Week $week, Meeting $meeting)
+    {
+        $my_items = collect();
+        foreach($meeting->agenda_items as $item)
+        {
+            $events = collect();
+
+            foreach($item->comments as $comment)
+            {
+                $events->push([
+                    'type' => 'comment',
+                    'text' => $comment->text,
+                    'date' => $comment->created_at,
+                    'user' => $comment->author
+                ]);
+            }
+            
+            if($item instanceof \App\Topic && $item->closed)
+            {
+                $events->push([
+                    'type' => 'state',
+                    'text' => "<em>Onderwerp gesloten</em>",
+                    'date' => $item->closed_at,
+                    'user' => null
+                ]);
+            }
+
+            if($item instanceof \App\Topic && $item->tasks->count())
+            {
+                foreach($item->tasks as $task)
+                {
+                    $events->push([
+                        'type' => 'task',
+                        'text' => "<em>Taak toegevoegd:</em><br />{$task->slug} | {$task->owner} | {$task->title}",
+                        'date' => null,
+                        'user' => null
+                    ]);
+                }
+            }
+
+            if($item instanceof \App\Task)
+            {
+                if($item->resonated_at)
+                {
+                    $events->push([
+                        'type' => 'state',
+                        'text' => "<em>Actie geresoneerd</em>",
+                        'date' => $item->resonated_at,
+                        'user' => null
+                    ]);
+                }
+                if($item->secured_at)
+                {
+                    $events->push([
+                        'type' => 'state',
+                        'text' => "<em>Actie geborgd</em>",
+                        'date' => $item->secured_at,
+                        'user' => null
+                    ]);
+                }
+                if($item->filed_at)
+                {
+                    $events->push([
+                        'type' => 'state',
+                        'text' => "<em>Actie afgerond</em>",
+                        'date' => $item->filed_at,
+                        'user' => null
+                    ]);
+                }
+            }
+
+            $meetings_after = $item->meetings()->where('date', '>', $meeting->date)->get();
+            if($meetings_after->count())
+            {
+                foreach($meetings_after as $after)
+                {
+                    $events->push([
+                        'type' => 'meeting',
+                        'text' => "<em>Toegevoegd aan vergadering:</em><br />{$after->title}, {$after->date}",
+                        'date' => null,
+                        'user' => null
+                    ]);
+                }
+            }
+
+            $events->sortBy('date');
+
+            $my_items->put($item->listing->id, $events);
+        }
+
+        //return $my_items;
+
+        return view('minutes.show')
+                ->with(compact('schoolyear'))
+                ->with(compact('week'))
+                ->with(compact('meeting'))
+                ->with(compact('my_items'));
     }
 
     public function agenda_edit(Meeting $meeting)

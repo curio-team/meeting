@@ -51,6 +51,16 @@ class Meeting extends Model
     		->withTimeStamps();
     }
 
+    public function getOpenAttribute()
+    {
+        return ($this->closed_at == null) ? true : false;
+    }
+
+    public function getClosedAttribute()
+    {
+        return !$this->getOpenAttribute();
+    }
+
     public function __get($key)
     {
         if($key == 'agenda_items') return $this->agenda_items();

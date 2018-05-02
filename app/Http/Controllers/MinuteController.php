@@ -52,12 +52,7 @@ class MinuteController extends Controller
     {
         $meeting->closed_at = $meeting->freshTimestamp();
         $meeting->save();
-        return redirect()->route('meetings.minutes.show', $meeting);
-    }
-
-    public function show(Meeting $meeting)
-    {
-        return $meeting;
+        return redirect()->route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]);
     }
 
     public function store_topic(Meeting $meeting, Request $request)
