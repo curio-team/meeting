@@ -40,8 +40,6 @@ Route::get('meetings/{meeting}/minute/start', 'MinuteControllerShow@start')->nam
 Route::get('meetings/{meeting}/minute/listing/{listing}', 'MinuteControllerShow@item')->name('meetings.minute.listing');
 Route::get('meetings/{meeting}/minute/end', 'MinuteControllerShow@end')->name('meetings.minute.end');
 
-Route::post('minute/meeting/{meeting}/topics/{topic}/tasks', 'MinuteController@task')->name('meeting.minute.task');
-
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
 Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
@@ -50,6 +48,7 @@ Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close
 
 //Tasks
 Route::post('tasks/{task}/state', 'TaskController@change_state')->name('tasks.state');
+Route::post('topics/{topic}/tasks', 'TaskController@store_with_topic')->name('topics.tasks.store');
 
 //Comments
 Route::post('topics/{topic}/comments', 'CommentController@store_topic')->name('topics.comments.store');

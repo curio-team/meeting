@@ -38,43 +38,4 @@ class MinuteControllerBackground extends Controller
     	return redirect()->back();
     }
     
-
-    public function comment(Meeting $meeting, $commentable_type, $commentable_id, Request $request)
-    {
-    	$request->validate(['comment' => 'required']);
-    	$comment = new Comment();
-    	$comment->author = 'br10';
-    	$comment->text = $request->comment;
-
-        $commentable_type = 'App\\' . ucfirst($commentable_type);
-        $commentable = $commentable_type::find($commentable_id);
-
-    	$commentable->comments()->save($comment);
-    	return redirect()->back();
-    }
-
-    public function task(Meeting $meeting, Topic $topic, Request $request)
-    {
-    	$request->validate([
-    		'title' => 'required',
-    		'owner' => 'alpha_num|size:4',
-    		'agendate' => 'integer|nullable'
-    	]);
-
-    	$task = new Task();
-    	$task-> slug = Task::generateSlug();
-    	$task->owner = $request->owner;
-    	$task->title = $request->title;
-    	$topic->tasks()->save($task);
-
-    	if($request->agendate != null && $request->agendate != 0)
-    	{
-    		$meeting = Meeting::find($request->agendate);
-    		$meeting->tasks()->attach($task, ['added_by' => $request->owner]);
-    	}
-
-    	return redirect()->back();
-    }
-
-    
 }

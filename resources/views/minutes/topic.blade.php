@@ -84,7 +84,7 @@
 
 		<div class="list-group-item">
 			<div>Nieuwe actie</div>
-			<form action="{{ route('meeting.minute.task', [$meeting, $topic]) }}" method="POST">
+			<form action="{{ route('topics.tasks.store', $topic) }}" method="POST">
 				{{ csrf_field() }}
 				<input type="text" name="title" class="form-control" placeholder="Actie...">
 				<div class="d-flex justify-content-between mt-2">
