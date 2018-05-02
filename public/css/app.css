@@ -114,6 +114,11 @@ hr{
 	page-break-inside: avoid;
 }
 
+.breadcrumb-item a:not(.navbar-brand){
+	color: inherit;
+	text-decoration: underline;
+}
+
 @media screen and (max-width: 700px) {
 	html{
 		font-size: 14px;

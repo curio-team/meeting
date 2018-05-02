@@ -2,7 +2,7 @@
 
 @section('more-breadcrumbs')
     <li class="breadcrumb-item">
-    	{{ $schoolyear->title }}
+    	<a href="{{ route('schoolyears.show', $schoolyear) }}">{{ $schoolyear->title }}</a>
     </li>
     <li class="breadcrumb-item">
     	{{ $week->title ?? "{$week->start->format('d-m')} - {$week->end->format('d-m')}" }}
@@ -10,12 +10,6 @@
     <li class="breadcrumb-item">
     	{{ $meeting->title }}
     </li>
-@endsection
-
-@section('buttons-right')
-	<a class="btn btn-outline-light" href="{{ route('schoolyears.show', $schoolyear) }}">
-        <i class="fas fa-chevron-left"></i> Terug
-    </a>
 @endsection
 
 @section('content')

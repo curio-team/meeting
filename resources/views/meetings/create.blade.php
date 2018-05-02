@@ -2,7 +2,7 @@
 
 @section('more-breadcrumbs')
     <li class="breadcrumb-item">
-    	{{ $schoolyear->title }}
+    	<a href="{{ route('schoolyears.show', $schoolyear) }}">{{ $schoolyear->title }}</a>
     </li>
     <li class="breadcrumb-item">
     	Nieuwe meeting
