@@ -34,11 +34,11 @@ Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->
 Route::get('meetings/{meeting}/minute/start', 'MinuteController@start')->name('meetings.minute.start');
 Route::get('meetings/{meeting}/minute/listing/{listing}', 'MinuteController@item')->name('meetings.minute.listing');
 Route::get('meetings/{meeting}/minute/end', 'MinuteController@end')->name('meetings.minute.end');
+//Meetings.Topics
+Route::post('meetings/{meeting}/topics', 'MinuteControllerBackground@store_topic')->name('meetings.topics.store');
 
 
 Route::post('minute/meeting/{meeting}/start', 'MinuteController@save')->name('meeting.minute.save');
-Route::post('minute/meeting/{meeting}/topics', 'MinuteController@add')->name('meeting.minute.add');
-Route::post('minute/meeting/{meeting}/topics/go', 'MinuteController@add_go')->name('meeting.minute.add_go');
 Route::post('minute/meeting/{meeting}/topics/{topic}/tasks', 'MinuteController@task')->name('meeting.minute.task');
 
 //Topics

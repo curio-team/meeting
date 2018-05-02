@@ -28,7 +28,7 @@
 		<p>Voeg nog een extra punt toe:</p>
 
 		<div class="list-group">
-         	<form action="{{ route('meeting.minute.add', $meeting) }}" method="POST" class="list-group-item d-flex justify-content-between align-items-center m-0">
+         	<form action="{{ route('meetings.topics.store', $meeting) }}" method="POST" class="list-group-item d-flex justify-content-between align-items-center m-0">
                 {{ csrf_field() }}
                 <input type="text" name="title" class="form-control" placeholder="Titel">
                 <div class="input-group ml-3">
