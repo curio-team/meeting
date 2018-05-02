@@ -43,8 +43,10 @@
 		</div>
 		
 		<h4 class="mt-5 mb-3">Agenda</h4>
-		<form action="{{ route('meeting.minute.save', $meeting) }}" method="POST">
+		<form action="{{ route('meetings.listings.update', $meeting) }}" method="POST">
 			{{ csrf_field() }}
+            {{ method_field('PATCH') }}
+            <input type="hidden" name="start_minutes" value="1">
 
 			@include('meetings.partials.edit')
 			<button type="submit" class="btn btn-success">Opslaan en verder <i class="fas fa-chevron-right"></i></button>

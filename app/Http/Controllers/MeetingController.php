@@ -60,6 +60,27 @@ class MeetingController extends Controller
             $listing->save();
         }
 
+        $meeting->load(['topics', 'tasks']);
+
+        //make sure _every_ item has an order set
+        $max = $meeting->agenda_items->max('listing.order');
+        foreach($meeting->agenda_items as $item)
+        {
+            if($item->listing->order == null)
+            {
+                $max++;
+                $item->listing->order = $max;
+                $item->listing->save();
+            }
+        }
+
+        if($request->start_minutes)
+        {
+            $meeting->load(['topics', 'tasks']);
+            $next = $meeting->agenda_items->first();
+            return redirect()->route('meetings.minute.listing', [$meeting, $next->listing->id]);
+        }
+
         return redirect()->route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]);
     }
 }

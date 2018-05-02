@@ -40,7 +40,6 @@ Route::get('meetings/{meeting}/minute/start', 'MinuteControllerShow@start')->nam
 Route::get('meetings/{meeting}/minute/listing/{listing}', 'MinuteControllerShow@item')->name('meetings.minute.listing');
 Route::get('meetings/{meeting}/minute/end', 'MinuteControllerShow@end')->name('meetings.minute.end');
 
-Route::post('minute/meeting/{meeting}/start', 'MinuteController@save')->name('meeting.minute.save');
 Route::post('minute/meeting/{meeting}/topics/{topic}/tasks', 'MinuteController@task')->name('meeting.minute.task');
 
 //Topics
