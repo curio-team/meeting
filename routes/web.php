@@ -31,10 +31,12 @@ Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')-
 Route::post('meetings/{meeting}/listings', 'MeetingController@agenda_save')->name('meetings.listings.save');
 
 //Minute
-Route::get('minute/meeting/{meeting}/start', 'MinuteController@start')->name('meeting.minute');
+Route::get('meetings/{meeting}/minute/start', 'MinuteController@start')->name('meetings.minute.start');
+Route::get('meetings/{meeting}/minute/listing/{listing}', 'MinuteController@item')->name('meetings.minute.listing');
+Route::get('meetings/{meeting}/minute/end', 'MinuteController@end')->name('meetings.minute.end');
+
+
 Route::post('minute/meeting/{meeting}/start', 'MinuteController@save')->name('meeting.minute.save');
-Route::get('minute/meeting/{meeting}/listing/{listing}', 'MinuteController@item')->name('meeting.minute.item');
-Route::get('minute/meeting/{meeting}/end', 'MinuteController@end')->name('meeting.minute.end');
 Route::post('minute/meeting/{meeting}/topics', 'MinuteController@add')->name('meeting.minute.add');
 Route::post('minute/meeting/{meeting}/topics/go', 'MinuteController@add_go')->name('meeting.minute.add_go');
 Route::post('minute/meeting/{meeting}/{commentable_type}/{commentable_id}/comments', 'MinuteController@comment')->name('meeting.minute.comment');

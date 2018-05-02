@@ -57,7 +57,7 @@ class MinuteController extends Controller
         //This works because the topic was just created, and can therefor belong only to one meeting
         $listing = $topic->meetings->first()->listing;
 
-        return redirect()->route('meeting.minute.item', [$meeting, $listing->id]);
+        return redirect()->route('meetings.minute.listing', [$meeting, $listing->id]);
     }
 
     public function save(Meeting $meeting, Request $request)
@@ -87,7 +87,7 @@ class MinuteController extends Controller
         $meeting->load(['topics', 'tasks']);
         $next = $meeting->agenda_items->first();
 
-        return redirect()->route('meeting.minute.item', [$meeting, $next->listing->id]);
+        return redirect()->route('meetings.minute.listing', [$meeting, $next->listing->id]);
     }
 
     public function item(Meeting $meeting, Listing $listing)

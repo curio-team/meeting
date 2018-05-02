@@ -66,7 +66,7 @@
 						</td>
 						<td>{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none">
-							<a href="{{ route('meeting.minute.item', [$meeting, $agenda_item->listing->id]) }}" target="_blank"><i class="fas fa-gavel"></i> Notuleren</a>
+							<a href="{{ route('meetings.minute.listing', [$meeting, $agenda_item->listing->id]) }}" target="_blank"><i class="fas fa-gavel"></i> Notuleren</a>
 						</td>
 					</tr>
 				@endforeach
