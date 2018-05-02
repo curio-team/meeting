@@ -114,7 +114,7 @@ class MeetingController extends Controller
                 }
             }
 
-            $meetings_after = $item->meetings()->where('date', '>', $meeting->date)->get();
+            $meetings_after = $item->meetings->where('date', '>', $meeting->date);
             if($meetings_after->count())
             {
                 foreach($meetings_after as $after)
@@ -132,8 +132,6 @@ class MeetingController extends Controller
 
             $my_items->put($item->listing->id, $events);
         }
-
-        //return $my_items;
 
         return view('minutes.show')
                 ->with(compact('schoolyear'))
