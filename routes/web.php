@@ -39,6 +39,7 @@ Route::post('meetings/{meeting}/topics', 'MinuteControllerBackground@store_topic
 Route::get('meetings/{meeting}/minutes/start', 'MinuteControllerShow@start')->name('meetings.minutes.start');
 Route::get('meetings/{meeting}/minutes/listing/{listing}', 'MinuteControllerShow@item')->name('meetings.minutes.listing');
 Route::get('meetings/{meeting}/minutes/end', 'MinuteControllerShow@end')->name('meetings.minutes.end');
+Route::get('meetings/{meeting}/minutes/show', 'MinuteControllerShow@show')->name('meetings.minutes.show');
 
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
