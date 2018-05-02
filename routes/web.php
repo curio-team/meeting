@@ -36,9 +36,9 @@ Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->
 Route::post('meetings/{meeting}/topics', 'MinuteControllerBackground@store_topic')->name('meetings.topics.store');
 
 //Minute
-Route::get('meetings/{meeting}/minute/start', 'MinuteControllerShow@start')->name('meetings.minute.start');
-Route::get('meetings/{meeting}/minute/listing/{listing}', 'MinuteControllerShow@item')->name('meetings.minute.listing');
-Route::get('meetings/{meeting}/minute/end', 'MinuteControllerShow@end')->name('meetings.minute.end');
+Route::get('meetings/{meeting}/minutes/start', 'MinuteControllerShow@start')->name('meetings.minute.start');
+Route::get('meetings/{meeting}/minutes/listing/{listing}', 'MinuteControllerShow@item')->name('meetings.minute.listing');
+Route::get('meetings/{meeting}/minutes/end', 'MinuteControllerShow@end')->name('meetings.minute.end');
 
 //Topics
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
