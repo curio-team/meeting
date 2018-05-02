@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card my-4">
 	<div class="card-body trix-content">
 		{!! $comment->text !!}
 	</div>

@@ -106,6 +106,10 @@ hr{
 	border-top-color: rgba(0,0,0,1);
 }
 
+.meeting .info{
+	min-height: 200px;
+}
+
 @media screen and (max-width: 700px) {
 	html{
 		font-size: 14px;

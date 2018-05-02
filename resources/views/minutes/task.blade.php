@@ -61,7 +61,7 @@
 		
 		<div>
 			<h5>Status</h5>
-			<form action="{{ route('tasks.state', $task) }}" method="POST" class="m-0">
+			<form action="{{ route('tasks.state', $task) }}" method="POST">
 				{{ csrf_field() }}
 				<div class="list-group">
 					<span class="list-group-item list-group-item-light">
@@ -99,11 +99,24 @@
 					@endif
 				</div>
 			</form>
+
+			<h5 class="mt-3">Vooruitschuiven</h5>
+			<form action="" class="m-0">
+				<div class="input-group">
+					<select name="agendate" class="form-control">
+						<option value="0">Zet op agenda voor komende meeting</option>
+						@foreach($meetings as $m)
+							<option value="{{ $m->id }}">{{ $m->title }} {{ $m->week->title }}</option>
+						@endforeach
+					</select>
+					<div class="input-group-append"><button class="btn"><i class="fas fa-plus"></i></button></div>
+				</div>
+			</form>
 		</div>
 	</div>
 
 	@if($task->topic != null)
-		<hr>
+		<hr class="my-5">
 		<h2>{{ $task->topic->title }}</h2>
 	@endif
 
