@@ -42,15 +42,15 @@ class MeetingController extends Controller
             ->with(compact('meeting'));
     }
 
-    public function agenda_edit(Schoolyear $schoolyear, Week $week, Meeting $meeting)
+    public function agenda_edit(Meeting $meeting)
     {
-        return view('meetings.agenda')
-            ->with(compact('schoolyear'))
-            ->with(compact('week'))
-            ->with(compact('meeting'));
+        return view('meetings.agenda_edit')
+            ->with('schoolyear', $meeting->week->schoolyear)
+            ->with('week', $meeting->week)
+            ->with('meeting', $meeting);
     }
 
-    public function agenda_save(Schoolyear $schoolyear, Week $week, Meeting $meeting, Request $request)
+    public function agenda_save(Meeting $meeting, Request $request)
     {
         foreach($request->items as $id => $item)
         {
@@ -60,6 +60,6 @@ class MeetingController extends Controller
             $listing->save();
         }
 
-        return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
+        return redirect()->route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]);
     }
 }

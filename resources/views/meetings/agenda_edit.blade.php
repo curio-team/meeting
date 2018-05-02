@@ -28,7 +28,7 @@
 		@include('meetings.partials.head')
 
 		<h4 class="mt-5 mb-3">Agenda</h4>
-		<form action="{{ route('schoolyears.weeks.meetings.agenda.save', [$schoolyear, $week, $meeting]) }}" method="POST">
+		<form action="{{ route('meetings.listings.save', $meeting) }}" method="POST">
 			{{ csrf_field() }}
 
 			@include('meetings.partials.edit')

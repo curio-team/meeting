@@ -27,8 +27,8 @@ Route::post('schoolyears/{schoolyear}/weeks', 'WeekController@store')->name('sch
 
 //Meetings
 Route::resource('schoolyears.weeks.meetings', 'MeetingController', ['except' => 'index']);
-Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/edit', 'MeetingController@agenda_edit')->name('schoolyears.weeks.meetings.agenda.edit');
-Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/agenda/save', 'MeetingController@agenda_save')->name('schoolyears.weeks.meetings.agenda.save');
+Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')->name('meetings.listings.edit');
+Route::post('meetings/{meeting}/listings', 'MeetingController@agenda_save')->name('meetings.listings.save');
 
 //Minute
 Route::get('minute/meeting/{meeting}/start', 'MinuteController@start')->name('meeting.minute');
