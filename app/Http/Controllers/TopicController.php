@@ -34,22 +34,7 @@ class TopicController extends Controller
     	return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
     }
 
-    public function add(Schoolyear $schoolyear, Week $week, Meeting $meeting)
-    {
-    	//get all topics that are not yet attached to this meeting
-    	$topics = Topic::whereNull('closed_at')
-    		->whereDoesntHave('meetings', function ($query) use ($meeting) {
-    			$query->where('meeting_id', $meeting->id);
-    		})->get();
-
-    	return view('topics.add')
-            ->with(compact('schoolyear'))
-            ->with(compact('week'))
-            ->with(compact('meeting'))
-            ->with(compact('topics'));
-    }
-
-    public function associate(Schoolyear $schoolyear, Week $week, Meeting $meeting, Request $request)
+    public function attach(Meeting $meeting, Request $request)
     {
     	$request->validate([
     		'topic' => 'required|integer',
@@ -58,7 +43,7 @@ class TopicController extends Controller
 
     	$meeting->topics()->attach($request->topic, ['added_by' => Auth::id(), 'duration' => $request->duration]);
 
-    	return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
+    	return redirect()->route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]);
     }
     
     public function close(Topic $topic, Request $request)

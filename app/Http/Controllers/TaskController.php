@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Meeting;
 use App\Topic;
 use App\Task;
@@ -57,4 +58,17 @@ class TaskController extends Controller
 
         return redirect()->back();
     }
+
+    public function attach(Meeting $meeting, Request $request)
+    {
+        $request->validate([
+            'task' => 'required|integer',
+            'duration' => 'required|integer'
+        ]);
+
+        $meeting->tasks()->attach($request->task, ['added_by' => Auth::id(), 'duration' => $request->duration]);
+
+        return redirect()->route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]);
+    }
+    
 }

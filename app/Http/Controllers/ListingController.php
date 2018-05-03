@@ -5,10 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Meeting;
+use App\Topic;
+use App\Task;
 use App\Listing;
 
 class ListingController extends Controller
 {
+    public function create(Meeting $meeting)
+    {
+        //get all open topics that are not yet attached to this meeting
+        $topics = Topic::whereNull('closed_at')
+            ->whereDoesntHave('meetings', function ($query) use ($meeting) {
+                $query->where('meeting_id', $meeting->id);
+            })->get();
+
+        //get all open tasks that are not yet attached to this meeting
+        $tasks = Task::whereNull('filed_at')
+            ->whereDoesntHave('meetings', function ($query) use ($meeting) {
+                $query->where('meeting_id', $meeting->id);
+            })->get();
+
+        return view('meetings.add_item')
+            ->with(compact('meeting'))
+            ->with(compact('topics'))
+            ->with(compact('tasks'));
+    }
+
     public function attach(Listing $listing, Request $request)
     {
     	$request->validate(['meeting' => 'required|integer|min:1']);

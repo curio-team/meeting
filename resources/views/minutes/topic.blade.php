@@ -111,7 +111,7 @@
 							<option value="{{ $m->id }}">{{ $m->title }} {{ $m->week->title }}</option>
 						@endforeach
 					</select>
-					<button class="ml-2 btn btn-light"><i class="fas fa-save"></i></button>
+					<button class="ml-2 btn btn-light"><i class="far fa-save"></i></button>
 				</div>
 			</form>
 		</div>

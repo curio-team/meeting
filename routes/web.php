@@ -34,9 +34,14 @@ Route::group(['middleware' => ['auth', 'teacher']], function() {
 	Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')->name('meetings.listings.edit');
 	Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->name('meetings.listings.update');
 	Route::delete('meetings/{meeting}/listings', 'ListingController@destroy')->name('meetings.listings.delete');
+	Route::get('meetings/{meeting}/listings/create', 'ListingController@create')->name('meetings.listings.create');
 
 	//Meetings.Topics
 	Route::post('meetings/{meeting}/topics', 'MinuteController@store_topic')->name('meetings.topics.store');
+	Route::patch('meetings/{meeting}/topics', 'TopicController@attach')->name('meetings.topics.attach');
+
+	//Meetings.Tasks
+	Route::patch('meetings/{meeting}/tasks', 'TaskController@attach')->name('meetings.tasks.attach');
 
 	//Minute
 	Route::get('meetings/{meeting}/minutes/start', 'MinuteController@start')->name('meetings.minutes.start');
@@ -46,8 +51,6 @@ Route::group(['middleware' => ['auth', 'teacher']], function() {
 
 	//Topics
 	Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
-	Route::get('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/add', 'TopicController@add')->name('schoolyears.weeks.meetings.topics.add');
-	Route::post('schoolyears/{schoolyear}/weeks/{week}/meetings/{meeting}/topics/associate', 'TopicController@associate')->name('schoolyears.weeks.meetings.topics.associate');
 	Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close');
 
 	//Tasks
