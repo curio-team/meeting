@@ -89,17 +89,19 @@
 
 		</div>
 	</div>
-
+	
+	@if($topic->open || $topic->tasks->count())
 	<hr class="my-5">
 
 	<h5>Acties</h5>
 	<div class="list-group">
 		
 		@each('minutes.partials.task', $topic->tasks, 'task')
-
+		
+		@if($topic->open)
 		<div class="list-group-item">
 			<div>Nieuwe actie</div>
-			<form action="{{ route('topics.tasks.store', $topic) }}" method="POST">
+			<form action="{{ route('topics.tasks.store', $topic) }}" method="POST" class="m-0">
 				{{ csrf_field() }}
 				<input type="text" name="title" class="form-control" placeholder="Actie...">
 				<div class="d-flex justify-content-between mt-2">
@@ -115,6 +117,8 @@
 				</div>
 			</form>
 		</div>
+		@endif
 	</div>
+	@endif
 
 @endsection
