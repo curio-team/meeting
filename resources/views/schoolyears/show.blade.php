@@ -8,10 +8,10 @@
 
 @section('buttons-right')
 	<a class="btn btn-outline-light" href="{{ route('schoolyears.index') }}">
-        <i class="fas fa-folder"></i> Alle jaren
+        <i class="far fa-folder"></i> Alle jaren
     </a>
     <a class="btn btn-outline-light" href="{{ route('schoolyears.weeks.show', $schoolyear) }}">
-        <i class="fas fa-edit"></i> Weken aanpassen
+        <i class="far fa-edit"></i> Weken aanpassen
     </a>
 @endsection
 

@@ -24,9 +24,9 @@
             </ol>
             <div class="btn-group">
                 @yield('buttons-right')
-                <a class="btn btn-outline-light" href="/amoclient/logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
+                <span class="btn btn-outline-light">
+                    <i class="far fa-user"></i> {{ Auth::id() }}
+                </span>
             </div>
         </div>
     </nav>
