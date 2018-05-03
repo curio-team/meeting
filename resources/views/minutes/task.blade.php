@@ -57,7 +57,9 @@
 				@if($task->topic != null)
 					<tr>
 						<th>Bij onderwerp</th>
-						<td>{{ $task->topic->title }}</td>
+						<td>
+							<a href="{{ route('topics.show', $task->topic) }}" target="_blank">{{ $task->topic->title }}</a>
+						</td>
 					</tr>
 				@endif
 			</table>
@@ -124,11 +126,5 @@
 			
 		</div>
 	</div>
-
-	@if($task->topic != null)
-		<hr class="my-5">
-		<h2>{{ $task->topic->title }}</h2>
-	@endif
-
 
 @endsection

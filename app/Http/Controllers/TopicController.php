@@ -12,6 +12,11 @@ use App\Topic;
 class TopicController extends Controller
 {
 
+    public function show(Topic $topic)
+    {
+        return $topic;
+    }
+
     public function create(Schoolyear $schoolyear, Week $week, Meeting $meeting)
     {
     	return view('topics.create')
