@@ -31,7 +31,7 @@
 					</div>
 				</form>
 
-				@if($results != null)
+				@if(isset($result))
 					<ul class="mt-3">
 					@foreach($results as $result)
 						

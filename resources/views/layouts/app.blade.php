@@ -16,13 +16,23 @@
     
     <nav class="navbar navbar-light bg-info d-print-none">
         <div class="container">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb d-md-none">
+                <li class="breadcrumb-item">
+                    <a class="navbar-brand" href="{{ route('home') }}">Meeting</a>
+                </li>
+            </ol>
+            <ol class="breadcrumb d-none d-md-flex">
                 <li class="breadcrumb-item">
                     <a class="navbar-brand" href="{{ route('home') }}">Meeting</a>
                 </li>
                 @yield('more-breadcrumbs')
             </ol>
-            <div class="btn-group">
+            <div class="btn-group d-md-none">
+                <a href="{{ route('search') }}" class="btn btn-outline-light">
+                    <i class="fas fa-search"></i> Zoeken
+                </a>
+            </div>
+            <div class="btn-group d-none d-md-flex">
                 @yield('buttons-right')
                 <a href="{{ route('search') }}" class="btn btn-outline-light">
                     <i class="fas fa-search"></i> Zoeken

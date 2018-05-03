@@ -119,6 +119,10 @@ hr{
 	html{
 		font-size: 14px;
 	}
+
+	.meeting{
+		display: block;
+	}
 }
 
 
