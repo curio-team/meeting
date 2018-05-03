@@ -34,14 +34,12 @@
 					<th>Besproken in</th>
 					<td>
 						@foreach($topic->meetings as $m)
-							<a href="{{ route('schoolyears.weeks.meetings.show', [$m->week->schoolyear, $m->week, $m]) }}">
-								@if($m->week->number)
-									Week {{ $m->week->number }} - 
-								@elseif($m->week->description)
-									{{ $m->week->description }} - 
-								@endif
-								{{ $m->title }}
-							</a>
+							@if($m->week->number)
+								Week {{ $m->week->number }} - 
+							@elseif($m->week->description)
+								{{ $m->week->description }} - 
+							@endif
+							{{ $m->title }}
 							@unless($loop->last)<br />@endunless
 						@endforeach
 					</td>
