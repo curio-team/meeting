@@ -24,6 +24,9 @@
             </ol>
             <div class="btn-group">
                 @yield('buttons-right')
+                <a href="{{ route('search') }}" class="btn btn-outline-light">
+                    <i class="fas fa-search"></i> Zoeken
+                </a>
                 <span class="btn btn-outline-light">
                     <i class="far fa-user"></i> {{ Auth::id() }}
                 </span>

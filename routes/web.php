@@ -13,6 +13,11 @@
 
 Route::group(['middleware' => ['auth', 'teacher']], function() {
 
+//Search
+Route::get('search', 'SearchController@show')->name('search');
+Route::post('search/titles', 'SearchController@titles')->name('search.titles');
+Route::post('search/slug', 'SearchController@slug')->name('search.slug');
+
 //Calendar
 Route::get('/', 'CalendarController@show')->name('home');
 Route::get('/calendar/json', 'CalendarController@json')->name('calendar.json');
