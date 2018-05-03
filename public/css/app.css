@@ -124,3 +124,18 @@ hr{
 		font-size: 14px;
 	}
 }
+
+
+.minutes-state-block{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.minutes-state-block i{
+	color: rgba(0,0,0,.4);
+}
+
+.minutes-state-block p{
+	margin: 0;
+}

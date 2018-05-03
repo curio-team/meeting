@@ -34,25 +34,57 @@
 
 			<div class="minute">
 				@unless($loop->first)<hr class="my-5">@endunless
-				<h5>{{ $loop->iteration+1 }}. {{ $item->title }}</h5>
+
+				<div class="mb-3">
+					<h5 class="m-0 d-flex justify-content-between align-items-center">
+						{{ $loop->iteration+1 }}. {{ $item->title }}
+						@if($item instanceof \App\Task)
+							<div>
+								<span class="badge badge-info">{{ $item->owner }}</span>
+								<span class="badge badge-info">{{ $item->slug }}</span>
+							</div>
+						@endif
+					</h5>
+					
+					<p>
+						Status: {{ $item->open ? 'nog open' : 'gesloten' }}.
+					</p>
+				</div>
 
 				<div class="list-group">
 					@foreach($my_items[$item->listing->id] as $event)
 						<div class="list-group-item">
-							<div class="trix-content">{!! $event['text'] !!}</div>
-
-							@if($event['date'] != null)
-								<small>
-									{{ $event['date']->format('d-m-Y H:i') }}
-									@unless($event['user'] == null)
-										door {{ $event['user'] }}
-									@endunless
-								</small>
-							@endif
+							<div class="minutes-state-block">
+								@if($event['type'] == 'comment')
+									<div>
+										<div class="trix-content">{!! $event['text'] !!}</div>
+										<small>
+											{{ $event['date']->format('d-m-Y H:i') }}
+											door {{ $event['user'] }}
+										</small>
+									</div>
+									<i class="far fa-comment"></i>
+								@else
+									<div>
+										<p><em>{{ $event['text'] }}</em>{{ isset($event['payload']) ? ':' : '' }}</p>
+										@if(isset($event['payload']))
+											<p>{{ $event['payload'] }}</p>
+										@endif
+										@if(isset($event['date']))
+										<p><small>
+											{{ $event['date']->format('d-m-Y H:i') }}
+											@if(isset($event['user']))
+												door {{ $event['user'] }}
+											@endif
+										</small></p>
+										@endif
+									</div>
+									<i class="fas fa-fw fa-info"></i>
+								@endif
+							</div>	
 						</div>
 					@endforeach
-				</div>
-				
+				</div>		
 			</div>
 		@endforeach
 	</div>

@@ -64,9 +64,8 @@ class MeetingController extends Controller
             {
                 $events->push([
                     'type' => 'state',
-                    'text' => "<em>Onderwerp gesloten</em>",
-                    'date' => $item->closed_at,
-                    'user' => null
+                    'text' => "Onderwerp gesloten",
+                    'date' => $item->closed_at
                 ]);
             }
 
@@ -75,10 +74,9 @@ class MeetingController extends Controller
                 foreach($item->tasks as $task)
                 {
                     $events->push([
-                        'type' => 'task',
-                        'text' => "<em>Taak toegevoegd:</em><br />{$task->slug} | {$task->owner} | {$task->title}",
-                        'date' => null,
-                        'user' => null
+                        'type' => 'state',
+                        'text' => "Taak toegevoegd",
+                        'payload' => "{$task->slug} | {$task->owner} | {$task->title}"
                     ]);
                 }
             }
@@ -89,27 +87,24 @@ class MeetingController extends Controller
                 {
                     $events->push([
                         'type' => 'state',
-                        'text' => "<em>Actie geresoneerd</em>",
+                        'text' => 'Actie geresoneerd',
                         'date' => $item->resonated_at,
-                        'user' => null
                     ]);
                 }
                 if($item->secured_at)
                 {
                     $events->push([
                         'type' => 'state',
-                        'text' => "<em>Actie geborgd</em>",
-                        'date' => $item->secured_at,
-                        'user' => null
+                        'text' => 'Actie geborgd',
+                        'date' => $item->resonated_at,
                     ]);
                 }
                 if($item->filed_at)
                 {
                     $events->push([
                         'type' => 'state',
-                        'text' => "<em>Actie afgerond</em>",
-                        'date' => $item->filed_at,
-                        'user' => null
+                        'text' => 'Actie afgerond',
+                        'date' => $item->resonated_at,
                     ]);
                 }
             }
@@ -120,10 +115,9 @@ class MeetingController extends Controller
                 foreach($meetings_after as $after)
                 {
                     $events->push([
-                        'type' => 'meeting',
-                        'text' => "<em>Toegevoegd aan vergadering:</em><br />{$after->title}, {$after->date}",
-                        'date' => null,
-                        'user' => null
+                        'type' => 'state',
+                        'text' => 'Toegevoegd aan vergadering:',
+                        'payload' => "{$after->title}, {$after->date}"
                     ]);
                 }
             }
