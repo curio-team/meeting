@@ -135,3 +135,7 @@ hr{
 .minutes-state-block p{
 	margin: 0;
 }
+
+.list-group.status{
+	margin-top: 2rem;
+}

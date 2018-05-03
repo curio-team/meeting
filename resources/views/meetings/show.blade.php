@@ -64,7 +64,7 @@
 						<td>{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none">
 							<div class="btn-group">
-								<a href="#" target="_blank" class="btn btn-outline-secondary">
+								<a href="{{ ($agenda_item instanceof \App\Topic) ? route('topics.show', $agenda_item) : route('tasks.show', $agenda_item) }}" target="_blank" class="btn btn-outline-secondary">
 									<i class="fas fa-eye"></i>
 								</a>
 								<button type="submit" name="listing" value="{{ $agenda_item->listing->id }}" class="btn btn-outline-secondary">

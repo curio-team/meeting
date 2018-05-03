@@ -10,6 +10,11 @@ use App\Task;
 
 class TaskController extends Controller
 {
+    public function show(Task $task)
+    {
+        return view('tasks.show')->with(compact('task'));
+    }
+
     public function change_state(Task $task, Request $request)
     {
     	$request->validate(['field' => 'required']);

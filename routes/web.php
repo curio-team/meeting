@@ -57,6 +57,7 @@ Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' 
 Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close');
 
 //Tasks
+Route::get('tasks/{task}', 'TaskController@show')->name('tasks.show');
 Route::post('tasks/{task}/state', 'TaskController@change_state')->name('tasks.state');
 Route::post('topics/{topic}/tasks', 'TaskController@store_with_topic')->name('topics.tasks.store');
 
