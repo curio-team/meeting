@@ -64,8 +64,8 @@
 						<td>{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none">
 							<div class="btn-group">
-								<a href="{{ route('meetings.minutes.listing', [$meeting, $agenda_item->listing->id]) }}" target="_blank" class="btn btn-outline-secondary">
-									<i class="fas fa-gavel"></i>
+								<a href="#" target="_blank" class="btn btn-outline-secondary">
+									<i class="fas fa-eye"></i>
 								</a>
 								<button type="submit" name="listing" value="{{ $agenda_item->listing->id }}" class="btn btn-outline-secondary">
 									<i class="fas fa-ban"></i>

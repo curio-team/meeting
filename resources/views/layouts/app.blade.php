@@ -14,31 +14,28 @@
 
 <body>
     
-    <div class="grid-container">
-        <nav class="navbar navbar-light bg-info d-print-none">
-            <div class="container">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a class="navbar-brand" href="{{ route('home') }}">Meeting</a>
-                    </li>
-                    @yield('more-breadcrumbs')
-                </ol>
-                <div class="btn-group">
-                    @yield('buttons-right')
-                    <span class="btn btn-outline-light">
-                        <i class="far fa-user"></i> {{ Auth::id() }}
-                    </span>
-                </div>
+    <nav class="navbar navbar-light bg-info d-print-none">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="navbar-brand" href="{{ route('home') }}">Meeting</a>
+                </li>
+                @yield('more-breadcrumbs')
+            </ol>
+            <div class="btn-group">
+                @yield('buttons-right')
+                <span class="btn btn-outline-light">
+                    <i class="far fa-user"></i> {{ Auth::id() }}
+                </span>
+                <a href="https://github.com/amorocks/meeting/issues" target="_blank" class="btn btn-outline-light">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
-        </nav>
-
-        <div class="container main">
-            @yield('content')
         </div>
+    </nav>
 
-        <footer class="container d-print-none">
-            <p><small>Found a bug? Please create an issue at our <a href="https://github.com/amorocks/meeting/issues" target="_blank">GitHub</a> repository.</small><br /><small>Designed, built and powered by <a target="_blank" href="http://studiokaa.co">studioKaa</a>, for Team ICO at Radius College.</small></p>
-        </footer>
+    <div class="container main">
+        @yield('content')
     </div>
 
 </body>

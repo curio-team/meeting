@@ -63,6 +63,13 @@
 					<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
 				</form>
 			@endif
+			@if($topic->tasks->count())
+				<hr class="my-3">
+				<h5>Acties</h5>
+				<div class="list-group">
+					@each('minutes.partials.task', $topic->tasks, 'task')
+				</div>
+			@endif
 		</div>
 		<div>
 			<h5>Status</h5>
@@ -86,39 +93,9 @@
 			</form>
 			
 			@includeWhen($topic->open, 'minutes.partials.postpone')
+			@includeWhen($topic->open, 'minutes.partials.new_task')
 
 		</div>
 	</div>
-	
-	@if($topic->open || $topic->tasks->count())
-	<hr class="my-5">
-
-	<h5>Acties</h5>
-	<div class="list-group">
-		
-		@each('minutes.partials.task', $topic->tasks, 'task')
-		
-		@if($topic->open)
-		<div class="list-group-item">
-			<div>Nieuwe actie</div>
-			<form action="{{ route('topics.tasks.store', $topic) }}" method="POST" class="m-0">
-				{{ csrf_field() }}
-				<input type="text" name="title" class="form-control" placeholder="Actie...">
-				<div class="d-flex justify-content-between mt-2">
-					<input type="text" name="owner" class="form-control" placeholder="Eigenaar">
-					<select name="agendate" class="form-control ml-2">
-						<option value="0">Zet op agenda</option>
-						<option value="0">- geen -</option>
-						@foreach($meetings as $m)
-							<option value="{{ $m->id }}">{{ $m->title }} {{ $m->week->title }}</option>
-						@endforeach
-					</select>
-					<button class="ml-2 btn btn-light"><i class="far fa-save"></i></button>
-				</div>
-			</form>
-		</div>
-		@endif
-	</div>
-	@endif
 
 @endsection

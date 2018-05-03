@@ -1,16 +1,6 @@
-.grid-container{
-	display: grid;
-	grid-template-rows: 60px 1fr 60px;
-	min-height: 100vh;
-}
-
 .container.main{
 	margin-top: 1em;
 	margin-bottom: 1em;
-}
-
-footer p{
-	margin: 0;
 }
 
 .breadcrumb{
@@ -114,10 +104,6 @@ button.list-group-item{
 
 hr{
 	border-top-color: rgba(0,0,0,1);
-}
-
-.meeting .info{
-	min-height: 200px;
 }
 
 .minute{
