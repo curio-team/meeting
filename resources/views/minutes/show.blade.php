@@ -19,7 +19,38 @@
 
 	<div class="meeting">
 		
-		@include('meetings.partials.head')
+		<h2 class="page-title">{{ $meeting->title }}</h2>
+		<p class="lead">{{ ucfirst($meeting->date->formatLocalized('%A %e %B %Y')) }}</p>
+
+		<table class="table table-borderless table-sm">
+			<tr>
+				<th>Schooljaar</th>
+				<td>{{ $schoolyear->title }}</td>
+			</tr>
+			<tr>
+				<th>Week</th>
+				<td>{{ $week->title ?? 'Onbekend' }}</td>
+			</tr>
+			<tr>
+				<th>Duur geschat</th>
+				<td>
+					{{ \Carbon\Carbon::now()->subMinutes($meeting->agenda_items->sum('listing.duration'))->diffForHumans(null, true, false, 2) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Duur werkelijk</th>
+				<td>
+					{{ $meeting->started_at->diffForHumans($meeting->closed_at, true, false, 2) }}
+				</td>
+			</tr>
+			<tr>
+				<th>Notulist</th>
+				<td>
+					{{ \App\User::find($meeting->minuted_by) }}
+				</td>
+			</tr>
+		</table>
+
 
 		<div class="alert alert-info d-print-none">
 			<i class="fas fa-print"></i> Deze pagina is geschikt voor <em>afdrukken als pdf</em>.

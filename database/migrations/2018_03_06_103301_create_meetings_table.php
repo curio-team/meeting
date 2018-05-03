@@ -18,12 +18,17 @@ class CreateMeetingsTable extends Migration
             $table->integer('week_id')->unsigned();
             $table->date('date');
             $table->string('title');
+            $table->string('minuted_by')->nullable();
+            $table->timestamp('started_at')->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->timestamps();
 
             $table->foreign('week_id')
                     ->references('id')->on('weeks')
                     ->onDelete('cascade');
+
+            $table->foreign('minuted_by')
+                    ->references('id')->on('users');
         });
     }
 

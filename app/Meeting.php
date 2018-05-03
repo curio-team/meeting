@@ -13,6 +13,7 @@ class Meeting extends Model
 
 	protected $dates = [
         'date',
+        'started_at',
         'closed_at',
         'created_at',
         'updated_at'

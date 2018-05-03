@@ -28,4 +28,9 @@ class User extends Authenticatable
     ];
 
     public $incrementing = false;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

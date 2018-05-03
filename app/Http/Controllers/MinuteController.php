@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Suggestion;
 use App\Meeting;
 use App\Topic;
@@ -13,6 +14,22 @@ use App\Comment;
 class MinuteController extends Controller
 {
     
+    public function claim_show(Meeting $meeting)
+    {
+        return view('minutes.claim')
+            ->with('schoolyear', $meeting->week->schoolyear)
+            ->with('week', $meeting->week)
+            ->with('meeting', $meeting);
+    }
+
+    public function claim(Meeting $meeting)
+    {
+        $meeting->minuted_by = Auth::id();
+        $meeting->started_at = $meeting->freshTimestamp();
+        $meeting->save();
+        return redirect()->route('meetings.minutes.start', $meeting);
+    }
+
     public function start(Meeting $meeting)
     {
     	return view('minutes.start')

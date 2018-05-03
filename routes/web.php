@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth', 'teacher']], function() {
 	Route::patch('meetings/{meeting}/tasks', 'TaskController@attach')->name('meetings.tasks.attach');
 
 	//Minute
+	Route::get('meetings/{meeting}/minutes/claim', 'MinuteController@claim_show')->name('meetings.minutes.claim.show');
+	Route::post('meetings/{meeting}/minutes/claim', 'MinuteController@claim')->name('meetings.minutes.claim');
 	Route::get('meetings/{meeting}/minutes/start', 'MinuteController@start')->name('meetings.minutes.start');
 	Route::get('meetings/{meeting}/minutes/listings/{listing}', 'MinuteController@item')->name('meetings.minutes.listing');
 	Route::get('meetings/{meeting}/minutes/questions', 'MinuteController@questions')->name('meetings.minutes.questions');
