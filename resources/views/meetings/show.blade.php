@@ -17,6 +17,7 @@
 		
 		@include('meetings.partials.head')
 		@includeWhen(count($suggestions), 'meetings.partials.suggestions')
+		@include('layouts.partials.status')
 
 		<div class="d-flex justify-content-between mt-5 mb-3">
 			<h4>Agenda</h4>
@@ -27,7 +28,9 @@
 				<a class="btn btn-outline-secondary" href="{{ route('meetings.minutes.start', $meeting) }}"><i class="fas fa-gavel"></i> Start notuleren</a>
 			</div>
 		</div>
-
+	
+		<form action="{{ route('meetings.listings.delete', $meeting) }}" class="m-0" method="POST"> 
+		{{ csrf_field() }}{{ method_field('DELETE') }}
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -60,8 +63,14 @@
 						</td>
 						<td>{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none">
-							<a href="{{ route('meetings.minutes.listing', [$meeting, $agenda_item->listing->id]) }}" target="_blank"><i class="fas fa-gavel"></i></a> |
-							<a href="" target="_blank"><i class="fas fa-ban"></i></a>
+							<div class="btn-group">
+								<a href="{{ route('meetings.minutes.listing', [$meeting, $agenda_item->listing->id]) }}" target="_blank" class="btn btn-outline-secondary">
+									<i class="fas fa-gavel"></i>
+								</a>
+								<button type="submit" name="listing" value="{{ $agenda_item->listing->id }}" class="btn btn-outline-secondary">
+									<i class="fas fa-ban"></i>
+								</button>
+							</div>
 						</td>
 					</tr>
 				@endforeach
@@ -76,5 +85,6 @@
 				</tr>
 			</tbody>
 		</table>
+		</form>
 	</div>
 @endsection

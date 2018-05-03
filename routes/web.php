@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth', 'teacher']], function() {
 	//Meetings.Listings
 	Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')->name('meetings.listings.edit');
 	Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->name('meetings.listings.update');
+	Route::delete('meetings/{meeting}/listings', 'ListingController@destroy')->name('meetings.listings.delete');
 
 	//Meetings.Topics
 	Route::post('meetings/{meeting}/topics', 'MinuteController@store_topic')->name('meetings.topics.store');
@@ -59,7 +60,6 @@ Route::group(['middleware' => ['auth', 'teacher']], function() {
 
 	//Listings
 	Route::post('listings/{listing}/meetings', 'ListingController@attach')->name('listings.attach');
-
 });
 
 //Login
