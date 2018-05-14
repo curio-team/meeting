@@ -34,34 +34,34 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th style="width: 50px;" class="d-none d-md-inline">&nbsp;</th>
-					<th style="width: 75px;" class="d-none d-md-inline">Tijd</th>
+					<th style="width: 50px;" class="d-none d-md-table-cell">&nbsp;</th>
+					<th style="width: 75px;" class="d-none d-md-table-cell">Tijd</th>
 					<th>Onderwerp</th>
 					<th>Ref.</th>
-					<th class="d-none d-md-inline">Toegevoegd door</th>
+					<th class="d-none d-md-table-cell">Toegevoegd door</th>
 					<th class="d-print-none">Acties</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td class="d-none d-md-inline">1.</td>
-					<td class="d-none d-md-inline"></td>
+					<td class="d-none d-md-table-cell">1.</td>
+					<td class="d-none d-md-table-cell"></td>
 					<td>Welkom, vaststellen agenda en notulist</td>
 					<td></td>
-					<td class="d-none d-md-inline"></td>
+					<td class="d-none d-md-table-cell"></td>
 					<td class="d-print-none"></td>
 				</tr>
 
 				<?php $end = 1; ?>
 				@foreach($meeting->agenda_items as $agenda_item)
 					<tr>
-						<td class="d-none d-md-inline">{{ $end = $loop->iteration+1 }}.</td>
-						<td class="d-none d-md-inline">{{ $agenda_item->listing->duration ? $agenda_item->listing->duration.' min' : '' }}</td>
+						<td class="d-none d-md-table-cell">{{ $end = $loop->iteration+1 }}.</td>
+						<td class="d-none d-md-table-cell">{{ $agenda_item->listing->duration ? $agenda_item->listing->duration.' min' : '' }}</td>
 						<td>{{ $agenda_item->title }}</td>
 						<td>
 							{{ ($agenda_item instanceof \App\Task) ? $agenda_item->slug : '' }}
 						</td>
-						<td class="d-none d-md-inline">{{ $agenda_item->listing->added_by }}</td>
+						<td class="d-none d-md-table-cell">{{ $agenda_item->listing->added_by }}</td>
 						<td class="d-print-none">
 							<div class="btn-group">
 								<a href="{{ ($agenda_item instanceof \App\Topic) ? route('topics.show', $agenda_item) : route('tasks.show', $agenda_item) }}" target="_blank" class="btn btn-outline-secondary">
@@ -76,11 +76,11 @@
 				@endforeach
 
 				<tr>
-					<td class="d-none d-md-inline">{{ $end+1 }}.</td>
-					<td class="d-none d-md-inline"></td>
+					<td class="d-none d-md-table-cell">{{ $end+1 }}.</td>
+					<td class="d-none d-md-table-cell"></td>
 					<td>Rondvraag</td>
 					<td></td>
-					<td class="d-none d-md-inline"></td>
+					<td class="d-none d-md-table-cell"></td>
 					<td class="d-print-none"></td>
 				</tr>
 			</tbody>
