@@ -64,7 +64,7 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="comment" id="comment">
 					@include('layouts.partials.trix', ['field' => 'comment'])
-					<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
+					<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Toevoegen</button>
 				</form>
 			@endif
 		</div>

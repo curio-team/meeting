@@ -1,6 +1,6 @@
 <div class="list-group-item">
 	<div class="d-flex justify-content-between align-items-center">
-		{{ $task->title }}
+		<a href="{{ route('tasks.show', $task) }}" target="_blank">{{ $task->title }}</a>
 		<span class="badge badge-info">{{ $task->slug }}</span>
 	</div>
 	<small class="text-muted">

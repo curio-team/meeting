@@ -42,14 +42,14 @@
 			<h5>Notulen</h5>
 			@each('minutes.partials.comment', $topic->comments, 'comment')
 
-			{{--@if($topic->open)
+			@if($topic->open)
 				<form action="{{ route('topics.comments.store', $topic) }}" method="POST">
 					{{ csrf_field() }}
 					<input type="hidden" name="comment" id="comment">
 					@include('layouts.partials.trix', ['field' => 'comment'])
-					<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
+					<button type="submit" class="mt-2 btn btn-success"><i class="fas fa-save"></i> Toevoegen</button>
 				</form>
-			@endif--}}
+			@endif
 			@if($topic->tasks->count())
 				<hr class="my-3">
 				<h5>Acties</h5>
