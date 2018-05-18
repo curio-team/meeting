@@ -42,6 +42,34 @@ class MinuteController extends Controller
 
     public function item(Meeting $meeting, Listing $listing)
     {
+        $type = strtolower(class_basename(get_class($listing->parent)));
+        return view("minutes.$type")
+            ->with('listing', $listing)
+            ->with($type, $listing->parent)
+            ->with('meeting', $meeting)
+            ->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get());
+    }
+
+    public function next(Meeting $meeting, Listing $listing, Request $request)
+    {
+        if($request->action == 'close')
+        {
+            $parent = $listing->parent;
+            $parent->closed_at = $parent->freshTimestamp();
+            $parent->save();
+        }
+
+        $next = $this->get_next($meeting, $listing);
+        if($next == null)
+        {
+            return redirect()->route('meetings.minutes.questions', $meeting);
+        }
+
+        return redirect()->route('meetings.minutes.listing', [$meeting, $next->listing->id]);
+    }
+
+    private function get_next(Meeting $meeting, Listing $listing)
+    {
         //Find the place of this particular agenda-item in the meeting's agenda
         $my_place = $meeting->agenda_items->search(function ($item, $key) use ($listing){
             return $item->listing->id == $listing->id;
@@ -50,14 +78,7 @@ class MinuteController extends Controller
         $next_place = $my_place + 1;
         $count = $meeting->agenda_items->count();
         $next = ($next_place < $count) ? $meeting->agenda_items[$next_place] : null;
-
-        $type = strtolower(class_basename(get_class($listing->parent)));
-        return view("minutes.$type")
-            ->with('listing', $listing)
-            ->with($type, $listing->parent)
-            ->with('next', $next)
-            ->with('meeting', $meeting)
-            ->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get());
+        return $next;
     }
 
     public function questions(Meeting $meeting)

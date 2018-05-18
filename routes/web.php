@@ -53,6 +53,7 @@ Route::get('meetings/{meeting}/minutes/claim', 'MinuteController@claim_show')->n
 Route::post('meetings/{meeting}/minutes/claim', 'MinuteController@claim')->name('meetings.minutes.claim');
 Route::get('meetings/{meeting}/minutes/start', 'MinuteController@start')->name('meetings.minutes.start');
 Route::get('meetings/{meeting}/minutes/listings/{listing}', 'MinuteController@item')->name('meetings.minutes.listing');
+Route::post('meetings/{meeting}/minutes/listings/{listing}/next', 'MinuteController@next')->name('meetings.minutes.listing.next');
 Route::get('meetings/{meeting}/minutes/questions', 'MinuteController@questions')->name('meetings.minutes.questions');
 Route::post('meetings/{meeting}/minutes/close', 'MinuteController@close')->name('meetings.minutes.close');
 

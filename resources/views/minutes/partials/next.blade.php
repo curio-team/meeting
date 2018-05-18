@@ -1,9 +1,10 @@
-<div class="next d-flex justify-content-center align-items-center">
-	<p>
-		@if($next != null)
-			<a href="{{ route('meetings.minutes.listing', [$meeting, $next->listing->id]) }}" class="btn btn-light">Volgende: {{ $next->title }} <i class="fas fa-chevron-right"></i></a>
-		@else
-			<a href="{{ route('meetings.minutes.questions', $meeting) }}" class="btn btn-light">Volgende: Rondvraag <i class="fas fa-chevron-right"></i></a>
+<div class="next d-flex justify-content-center align-items-center text-center">
+	<form action="{{ route('meetings.minutes.listing.next', [$meeting, $listing]) }}" method="POST">
+		{{ csrf_field() }}
+		<div><button type="submit" name="action" value="none" class="btn btn-light">Volgende <i class="fas fa-chevron-right"></i></button></div>
+
+		@if(isset($topic))
+			<div class="my-3"><button type="submit" name="action" value="close" class="btn btn-light">Volgende &amp; sluiten <i class="fas fa-chevron-right"></i></button></div>
 		@endif
-	</p>
+	</form>
 </div>
