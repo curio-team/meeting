@@ -28,6 +28,14 @@
 			</ul>
 		</div>
 
+		<div class="alert alert-info">
+			<p><i class="fas fa-fw fa-info"></i> <strong>Aanpak betreft taskboard</strong></p>
+			<ul>
+				<li>Het doel is dat uiteindelijk alle taken vanuit dit systeem gemaakt worden. Bij het maken van een taak, kies je dan ook gelijk wanneer deze weer terug moet komen op de agenda. We hoeven dan niet iedere week álle taken langs, maar alleen wat er voor die week relevant is.</li>
+				<li>Voorlopige werkwijze betreft de ongeregistreerde taken: iedere vergadering aan het begin een item 'taskboard' toevoegen en daarin notuleren.</li>
+			</ul>
+		</div>
+
 		<div class="d-flex justify-content-between mt-5 mb-3">
 			<h4>Agenda</h4>
 			<div class="btn-group d-print-none">
