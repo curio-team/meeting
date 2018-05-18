@@ -8,6 +8,7 @@ use App\Schoolyear;
 use App\Week;
 use App\Meeting;
 use App\Topic;
+use App\Comment;
 
 class TopicController extends Controller
 {
@@ -29,12 +30,25 @@ class TopicController extends Controller
     {
     	$request->validate([
     		'title' => 'required|max:191',
-    		'duration' => 'required|integer'
+    		'duration' => 'required|integer',
+            'comment' => 'nullable'
     	]);
 
     	$topic = new Topic();
     	$topic->title = $request->title;
-    	$meeting->topics()->save($topic, ['added_by' => Auth::id(), 'duration' => $request->duration]);
+    	$topic = $meeting->topics()->save($topic, ['added_by' => Auth::id(), 'duration' => $request->duration]);
+
+        if($request->comment != null)
+        {
+            $comment = new Comment();
+            $comment->author = Auth::id();
+            $comment->text = $request->comment;
+            $topic->comments()->save($comment);
+
+            $listing = $topic->meetings()->first()->listing;
+            $listing->order = 0;
+            $listing->save();
+        }
 
     	return redirect()->route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]);
     }

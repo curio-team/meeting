@@ -19,6 +19,15 @@
 		@includeWhen(count($suggestions), 'meetings.partials.suggestions')
 		@include('layouts.partials.status')
 
+		<div class="alert alert-info">
+			<p><i class="fas fa-fw fa-info"></i> <strong>Aanpak betreft mededelingen</strong></p>
+			<ul>
+				<li>Een <em>mededeling</em> is in de Meeting-app geen aparte categorie.</li>
+				<li>Weet je al vóór de vergadering dat je een mededeling hebt? Voeg dan een nieuw punt toe, voor iedere mededeling een. Eventueel kun je daar ook de inhoud van de mededeling al bij zetten, dan hoeft het niet meer genotuleerd te worden!</li>
+				<li>Anders geef je tijdens het vaststellen van de agenda je punt door. Als we later bij dat punt arriveren, kun je de inhoud mededelen.</li>
+			</ul>
+		</div>
+
 		<div class="d-flex justify-content-between mt-5 mb-3">
 			<h4>Agenda</h4>
 			<div class="btn-group d-print-none">

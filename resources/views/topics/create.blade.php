@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('head')
+	<link rel="stylesheet" type="text/css" href="{{ asset('trix/trix.css') }}">
+	<script type="text/javascript" src="{{ asset('trix/trix.js') }}"></script>
+@endpush
+
 @section('more-breadcrumbs')
     <li class="breadcrumb-item">
         <a href="{{ route('schoolyears.show', $meeting->week->schoolyear) }}">{{ $meeting->week->schoolyear->title }}</a>
@@ -65,6 +70,15 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-group row">
+			<label for="duration" class="col-sm-3 col-form-label">Opmerking (optioneel, bijvoorbeeld voor een mededeling)</label>
+			<div class="col-sm-6">
+				<input type="hidden" name="comment" id="comment">
+				@include('layouts.partials.trix', ['field' => 'comment'])
+			</div>
+		</div>
+
+
 		<div class="form-group row">
 			<div class="col-sm-12">
 				<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
