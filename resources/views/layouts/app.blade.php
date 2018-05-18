@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     @stack('head')
     <link rel="stylesheet" href="{{ url('css/app.css') }}">
+
+    <script type="text/javascript"> 
+
+        function stopRKey(evt) { 
+          var evt = (evt) ? evt : ((event) ? event : null); 
+          var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+          if ((evt.keyCode == 13) && (node.type!="submit"))  {return false;} 
+        } 
+
+        document.onkeypress = stopRKey; 
+
+    </script>
 </head>
 
 <body>
