@@ -75,7 +75,7 @@ class MinuteController extends Controller
     public function store_topic(Meeting $meeting, Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:191',
             'duration' => 'nullable|integer',
             'added_by' => 'required|alpha_num'
         ]);

@@ -44,7 +44,7 @@ class TaskController extends Controller
     public function store_with_topic(Topic $topic, Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:191',
             'owner' => 'alpha_num|size:4',
             'agendate' => 'integer|nullable'
         ]);

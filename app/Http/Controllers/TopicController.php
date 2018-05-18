@@ -28,7 +28,7 @@ class TopicController extends Controller
     public function store(Schoolyear $schoolyear, Week $week, Meeting $meeting, Request $request)
     {
     	$request->validate([
-    		'title' => 'required',
+    		'title' => 'required|max:191',
     		'duration' => 'required|integer'
     	]);
 

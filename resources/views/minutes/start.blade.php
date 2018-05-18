@@ -19,6 +19,8 @@
 	<div class="meeting">
 		
 		<h2 class="page-title">1. Agenda vaststellen</h2>
+
+        @include('layouts.partials.status')
 		@includeWhen(count($suggestions), 'meetings.partials.suggestions')
 
 		<h4 class="mt-5">Toevoegen</h4>

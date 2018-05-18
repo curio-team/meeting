@@ -44,7 +44,7 @@ class SuggestionController extends Controller
         $request->validate([
             'term' => 'required|integer|between:1,4',
             'week' => 'required|integer|between:1,9',
-            'title' => 'required'
+            'title' => 'required|max:191'
         ]);
 
         $suggestion = $suggestion ?? new Suggestion();

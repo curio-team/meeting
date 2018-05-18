@@ -20,7 +20,7 @@ class MeetingController extends Controller
     {
     	$request->validate([
     		'date' => 'required|date_format:"Y-m-d"',
-    		'title' => 'nullable'
+    		'title' => 'nullable|max:191'
     	]);
 
     	$meeting = new Meeting();

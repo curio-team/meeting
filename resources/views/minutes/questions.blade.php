@@ -19,6 +19,8 @@
  
 	<h2 class="page-title">Rondvraag</h2>
 
+    @include('layouts.partials.status')
+
 	<div class="list-group my-4">
      	<form action="{{ route('meetings.topics.store', $meeting) }}" method="POST" class="list-group-item d-flex justify-content-between align-items-center m-0">
             {{ csrf_field() }}
