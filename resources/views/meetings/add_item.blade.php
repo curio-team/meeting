@@ -62,7 +62,7 @@
 					@else
 						<select required class="form-control" name="task">
 							@foreach($tasks as $task)
-								<option value="{{ $task->id }}">{{ $task->title }}</option>
+								<option value="{{ $task->id }}">{{ $task->slug }} - {{ $task->title }}</option>
 							@endforeach
 						</select>
 						<div class="d-flex justify-content-between mt-2">
