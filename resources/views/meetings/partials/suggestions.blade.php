@@ -1,4 +1,4 @@
-<div class="d-print-none">
+<div class="d-print-none mb-3">
 	<h4 class="mt-5">Suggesties</h4>
 	<p>Er zijn suggesties aanwezig voor week {{ $week->title }}:</p>
 	
