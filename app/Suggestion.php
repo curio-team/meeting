@@ -16,7 +16,7 @@ class Suggestion extends Model
     public static function findForMeeting(Meeting $meeting)
     {
     	$week = $meeting->week;
-    	if($week->term == null) return null;
+    	if($week->term == null) return collect();
 
     	return self
     		::where('term', $week->term)
