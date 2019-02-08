@@ -88,7 +88,12 @@
 							<div class="minutes-state-block">
 								@if($event['type'] == 'comment')
 									<div>
-										<div class="trix-content">{!! $event['text'] !!}</div>
+										<div class="trix-content">
+											<?php
+												$linkify = new \Misd\Linkify\Linkify(["attr" => ["target" => "_blank"]]);
+												echo $linkify->process($event['text']);
+											?>
+										</div>
 										<small>
 											{{ $event['date']->format('d-m-Y H:i') }}
 											door {{ $event['user'] }}
