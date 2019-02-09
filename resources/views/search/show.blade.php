@@ -31,17 +31,18 @@
 					</div>
 				</form>
 
-				@if(isset($result))
+				@if(isset($results))
 					<ul class="mt-3">
-					@foreach($results as $result)
+					@forelse($results as $result)
 						
 						<li>
 							<a target="_blank" href="{{ route(($result instanceof \App\Task) ? 'tasks.show' : 'topics.show', $result) }}">
 								{{ $result->title }}
 							</a>
 						</li>
-
-					@endforeach
+					@empty
+						<li>Geen resultaten!</li>
+					@endforelse
 					</ul>
 				@endif
 
