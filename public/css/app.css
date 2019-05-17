@@ -143,3 +143,18 @@ hr{
 .list-group.status{
 	margin-top: 2rem;
 }
+
+.my-stack{
+	position: relative;
+}
+
+.my-stack .dot{
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: blue;
+	display: block;
+    position: absolute;
+    top: 3px;
+    left: 14px;
+}

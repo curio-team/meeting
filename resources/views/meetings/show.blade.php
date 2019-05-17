@@ -82,7 +82,12 @@
 						<td class="d-print-none">
 							<div class="btn-group">
 								<a href="{{ ($agenda_item instanceof \App\Topic) ? route('topics.show', $agenda_item) : route('tasks.show', $agenda_item) }}" target="_blank" class="btn btn-outline-secondary">
-									<i class="fas fa-eye"></i>
+									<span class="my-stack">
+										<i class="fas fa-eye"></i>
+										@if(count($agenda_item->comments))
+											<span class="dot"></span>
+										@endif
+									</span>
 								</a>
 								<button type="submit" name="listing" value="{{ $agenda_item->listing->id }}" class="btn btn-outline-secondary d-none d-md-inline">
 									<i class="fas fa-ban"></i>
