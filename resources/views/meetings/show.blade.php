@@ -19,7 +19,7 @@
 		@includeWhen(count($suggestions), 'meetings.partials.suggestions')
 		@include('layouts.partials.status')
 
-		<div class="alert alert-{{ array_rand(['info', 'warning', 'danger', 'secondary', 'success']) }}">
+		<div class="alert alert-{{ collect(['info', 'warning', 'danger', 'secondary', 'success'])->random() }}">
 			<p><i class="fas fa-fw fa-info"></i> <strong>Werkafspraken vergadering</strong></p>
 			<ul>
 				<li>Zie ook <a href="https://edurocwb.sharepoint.com/:w:/r/sites/groepsite/Radius-College---ICT-ICO/_layouts/15/Doc.aspx?sourcedoc=%7BA580BFF9-063E-47A4-BD72-2111B7C0116B%7D&file=_Overlegstructuur_ICO.docx&action=default&mobileredirect=true" target="_blank">overlegstructuur team ICO</a>.</li>
