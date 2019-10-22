@@ -19,20 +19,13 @@
 		@includeWhen(count($suggestions), 'meetings.partials.suggestions')
 		@include('layouts.partials.status')
 
-		<div class="alert alert-info">
-			<p><i class="fas fa-fw fa-info"></i> <strong>Aanpak betreft mededelingen</strong></p>
+		<div class="alert alert-{{ array_rand('info', 'warning', 'danger', 'secondary', 'success') }}">
+			<p><i class="fas fa-fw fa-info"></i> <strong>Werkafspraken vergadering</strong></p>
 			<ul>
-				<li>Een <em>mededeling</em> is in de Meeting-app geen aparte categorie.</li>
-				<li>Weet je al vóór de vergadering dat je een mededeling hebt? Voeg dan een nieuw punt toe, voor iedere mededeling een. Eventueel kun je daar ook de inhoud van de mededeling al bij zetten, dan hoeft het niet meer genotuleerd te worden!</li>
-				<li>Anders geef je tijdens het vaststellen van de agenda je punt door. Als we later bij dat punt arriveren, kun je de inhoud mededelen.</li>
-			</ul>
-		</div>
-
-		<div class="alert alert-info">
-			<p><i class="fas fa-fw fa-info"></i> <strong>Aanpak betreft taskboard</strong></p>
-			<ul>
-				<li>Het doel is dat uiteindelijk alle taken vanuit dit systeem gemaakt worden. Bij het maken van een taak, kies je dan ook gelijk wanneer deze weer terug moet komen op de agenda. We hoeven dan niet iedere week álle taken langs, maar alleen wat er voor die week relevant is.</li>
-				<li>Voorlopige werkwijze betreft de ongeregistreerde taken: iedere vergadering aan het begin een item 'taskboard' toevoegen en daarin notuleren.</li>
+				<li>Zie ook <a href="https://edurocwb.sharepoint.com/:w:/r/sites/groepsite/Radius-College---ICT-ICO/_layouts/15/Doc.aspx?sourcedoc=%7BA580BFF9-063E-47A4-BD72-2111B7C0116B%7D&file=_Overlegstructuur_ICO.docx&action=default&mobileredirect=true" target="_blank">overlegstructuur team ICO</a>.</li>
+				<li>Mededelingen en vragen proberen we zoveel mogelijk per mail af te doen, breng ze alleen in als vergaderpunt als het erg belangrijk is om het face-to-face te melden.</li>
+				<li>Wees duidelijk in de intentie van je mail/vergaderpunt; ter info, discussiepunt, te nemen besluit, etc..</li>
+				<li>Een besluit wat het beleid van het team zou veranderen, moet besproken worden in het teamoverleg. Kleinere besluiten (bijvoorbeeld: <em>wanneer is de ouderavond</em>) proberen we zoveel mogelijk te regelen met alleen de betrokkenen.</li>
 			</ul>
 		</div>
 
