@@ -48,9 +48,6 @@
                 <a href="{{ route('search') }}" class="btn btn-outline-light">
                     <i class="fas fa-search"></i> Zoeken
                 </a>
-                <span class="btn btn-outline-light">
-                    <i class="far fa-user"></i> {{ Auth::id() }}
-                </span>
                 <a href="https://github.com/amorocks/meeting/issues" target="_blank" class="btn btn-outline-light">
                     <i class="fab fa-github"></i>
                 </a>
