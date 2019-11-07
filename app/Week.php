@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use App\Meeting;
+use App\Event;
 use App\Schoolyear;
 
 class Week extends Model
@@ -14,6 +15,11 @@ class Week extends Model
     public function meetings()
     {
         return $this->hasMany(Meeting::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
     }
 
     public function schoolyear()

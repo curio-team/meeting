@@ -35,8 +35,15 @@
 						@foreach($week->meetings as $meeting)
 							<a href="{{ route('schoolyears.weeks.meetings.show', [$schoolyear, $week, $meeting]) }}">{{ $meeting->title }}</a>{{ $loop->last ? '' : ',' }}
 						@endforeach
+						@foreach($week->events as $meeting)
+							, <a href="{{ route('schoolyears.weeks.events.edit', [$schoolyear, $week, $meeting]) }}">{{ $meeting->title }}</a>
+						@endforeach
 					</td>
-					<td><a href="{{ route('schoolyears.weeks.meetings.create', [$schoolyear, $week]) }}"><i class="fas fa-plus"></i> Nieuw</a></td>
+					<td>
+						<a href="{{ route('schoolyears.weeks.meetings.create', [$schoolyear, $week]) }}">+ meeting</a>
+						,&nbsp;
+						<a href="{{ route('schoolyears.weeks.events.create', [$schoolyear, $week]) }}">+ event</a>
+					</td>
 				</tr>
 			@empty
 				<tr>

@@ -35,6 +35,9 @@ Route::post('schoolyears/{schoolyear}/weeks', 'WeekController@store')->name('sch
 //Meetings
 Route::resource('schoolyears.weeks.meetings', 'MeetingController', ['except' => 'index']);
 
+//Events
+Route::resource('schoolyears.weeks.events', 'EventController', ['except' => ['index', 'show']]);
+
 //Meetings.Listings
 Route::get('meetings/{meeting}/listings/edit', 'MeetingController@agenda_edit')->name('meetings.listings.edit');
 Route::patch('meetings/{meeting}/listings', 'MeetingController@agenda_update')->name('meetings.listings.update');

@@ -48,7 +48,20 @@ class CalendarController extends Controller
                     "end" => $meeting->date->format('Y-m-d'),
                     "url" => route('schoolyears.weeks.meetings.show', [$week->schoolyear, $week, $meeting])
                 );
-            }
+            };
+
+            foreach ($week->events as $event)
+            {
+                $events[] = array(
+                    "id" => $event->id.'m',
+                    "title" => $event->title,
+                    "allDay" => true,
+                    "start" => $event->date->format('Y-m-d'),
+                    "end" => $event->date->format('Y-m-d'),
+                    "url" => route('schoolyears.weeks.events.edit', [$week->schoolyear, $week, $event]),
+                    "className" => "bg-secondary"
+                );
+            };
         }
 
         return $events;

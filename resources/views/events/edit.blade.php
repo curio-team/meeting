@@ -1,0 +1,71 @@
+@extends('layouts.app')
+
+@section('more-breadcrumbs')
+    <li class="breadcrumb-item">
+    	<a href="{{ route('schoolyears.show', $schoolyear) }}">{{ $schoolyear->title }}</a>
+    </li>
+    <li class="breadcrumb-item">
+    	Event aanpassen
+    </li>
+@endsection
+
+@section('buttons-right')
+	<a class="btn btn-outline-light" href="{{ url()->previous() }}">
+        <i class="fas fa-times"></i> Annuleren
+    </a>
+@endsection
+
+@section('content')
+
+	<form action="{{ route('schoolyears.weeks.events.update', [$schoolyear, $week, $event]) }}" method="POST">
+		{{ csrf_field() }}
+		{{ method_field('PATCH') }}
+
+		<h3>Event aanpassen</h3>
+	
+		@include ('layouts.errors')
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Scbooljaar</label>
+			<div class="col-sm-10">
+				<input type="text" readonly class="form-control-plaintext" value="{{ $schoolyear->title }}">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Week</label>
+			<div class="col-sm-10">
+				<input type="text" readonly class="form-control-plaintext" value="{{ $week->title }} ({{ $week->start->format('d-m') }} - {{ $week->end->format('d-m') }})">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="date" class="col-sm-2 col-form-label">Dag</label>
+			<div class="col-sm-10">
+				<select class="form-control" name="date" id="date">
+					<?php $date = clone $week->start; ?>
+					@while($date <= $week->end)
+						<option value="{{ $date->format('Y-m-d') }}" <?php if($date->format('N') == $event->date->format('N')) echo 'selected="selected"'; ?>>{{ $date->format('D d-m') }}</option>
+						<?php $date->modify('+1 day'); ?>
+					@endwhile
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="title" class="col-sm-2 col-form-label">Titel</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="title" name="title" value="{{ old('title', $event->title) }}">
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-12">
+				<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Opslaan</button>
+			</div>
+		</div>
+	</form>
+
+	<form action="{{ route('schoolyears.weeks.events.destroy', [$schoolyear, $week, $event]) }}" method="POST">
+		{{ csrf_field() }}
+		{{ method_field('DELETE') }}
+		<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Verwijderen</button>
+	</form>
+
+@endsection

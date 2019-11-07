@@ -17,6 +17,7 @@ class SchoolyearController extends Controller
     public function show(Schoolyear $schoolyear)
     {
         $schoolyear->load('weeks.meetings');
+        $schoolyear->load('weeks.events');
         return view('schoolyears.show')->with('schoolyear', $schoolyear);
     }
 
