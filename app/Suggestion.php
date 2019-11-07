@@ -19,8 +19,7 @@ class Suggestion extends Model
     	if($week->term == null) return collect();
 
     	return self
-    		::where('term', $week->term)
-    		->where('week', $week->week)
+    		::whereRaw('(term < ? OR (term = ? AND week <= ?))', [$week->term, $week->term, $week->week])
     		->whereDoesntHave('schoolyears', function($query) use($meeting){
     			$query->where('schoolyear_id', $meeting->week->schoolyear->id);
     		})->get();
