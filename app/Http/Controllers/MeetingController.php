@@ -144,6 +144,12 @@ class MeetingController extends Controller
 
     public function agenda_update(Meeting $meeting, Request $request)
     {
+        if(!$request->items)
+        {
+            $errors = collect(["Kan vergadering niet starten, er zijn geen punten om te notuleren!"]);
+            return redirect()->back()->with('errors', $errors);
+        }
+
         foreach($request->items as $id => $item)
         {
             $listing = Listing::find($id);
