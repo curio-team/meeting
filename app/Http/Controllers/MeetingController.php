@@ -50,7 +50,7 @@ class MeetingController extends Controller
         {
             $events = collect();
 
-            foreach($item->comments as $comment)
+            foreach($item->comments()->where('created_at', '<=', $meeting->closed_at)->get() as $comment)
             {
                 $events->push([
                     'type' => 'comment',

@@ -60,15 +60,23 @@
 		</div>
 		<div>
 			<h5>Status</h5>
-			<div class="list-group status">
-				<span class="list-group-item list-group-item-light">
-					<i class="fas fa-fw fa-dot-circle"></i> Gemaakt op {{ $topic->created_at }}
-				</span>
-				<span class="list-group-item list-group-item-light">
-					<i class="fas fa-fw fa-check"></i>
-					{{ $topic->open ? 'Onderwerp nog geopend' : 'Gesloten op ' . $topic->closed_at }}
-				</span>
-			</div>			
+			<form action="{{ route('topics.reopen', $topic) }}" method="POST">
+				{{ csrf_field() }}
+				<div class="list-group status">
+					<span class="list-group-item list-group-item-light">
+						<i class="fas fa-fw fa-dot-circle"></i> Gemaakt op {{ $topic->created_at }}
+					</span>
+					<span class="list-group-item list-group-item-light">
+						<i class="fas fa-fw fa-check"></i>
+						{{ $topic->open ? 'Onderwerp nog geopend' : 'Gesloten op ' . $topic->closed_at }}
+					</span>
+					@if(!$topic->open)
+						<button type="submit" class="list-group-item list-group-item-action">
+							<i class="fas fa-fw fa-undo"></i> Onderwerp heropenen
+						</button>
+					@endif
+				</div>
+			</form>			
 		</div>
 	</div>
 

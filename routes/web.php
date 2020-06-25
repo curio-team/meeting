@@ -64,6 +64,7 @@ Route::post('meetings/{meeting}/minutes/close', 'MinuteController@close')->name(
 Route::get('topics/{topic}', 'TopicController@show')->name('topics.show');
 Route::resource('schoolyears.weeks.meetings.topics', 'TopicController', ['only' => ['create', 'store']]);
 Route::post('topics/{topic}/close', 'TopicController@close')->name('topics.close');
+Route::post('topics/{topic}/reopen', 'TopicController@reopen')->name('topics.reopen');
 
 //Tasks
 Route::get('tasks/{task}', 'TaskController@show')->name('tasks.show');

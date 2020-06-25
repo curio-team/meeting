@@ -71,4 +71,11 @@ class TopicController extends Controller
         $topic->save();
         return redirect()->back();
     }
+
+    public function reopen(Topic $topic)
+    {
+        $topic->closed_at = null;
+        $topic->save();
+        return redirect()->back();
+    }
 }
