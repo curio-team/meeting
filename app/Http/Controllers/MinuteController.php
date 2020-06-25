@@ -16,6 +16,7 @@ class MinuteController extends Controller
     
     public function claim_show(Meeting $meeting)
     {
+        if($meeting->closed) return redirect()->back();
         return view('minutes.claim')
             ->with('schoolyear', $meeting->week->schoolyear)
             ->with('week', $meeting->week)
@@ -24,6 +25,7 @@ class MinuteController extends Controller
 
     public function claim(Meeting $meeting)
     {
+        if($meeting->closed) return redirect()->back();
         $meeting->minuted_by = Auth::id();
         $meeting->started_at = $meeting->freshTimestamp();
         $meeting->save();
@@ -32,6 +34,7 @@ class MinuteController extends Controller
 
     public function start(Meeting $meeting)
     {
+        if($meeting->closed) return redirect()->back();
     	return view('minutes.start')
     		->with('suggestions', Suggestion::findForMeeting($meeting))
     		->with('meetings', Meeting::where('date', '>', date('Y-m-d'))->orderBy('date')->get())
@@ -42,6 +45,7 @@ class MinuteController extends Controller
 
     public function item(Meeting $meeting, Listing $listing)
     {
+        if($meeting->closed) return redirect()->back();
         $type = strtolower(class_basename(get_class($listing->parent)));
         return view("minutes.$type")
             ->with('listing', $listing)
@@ -52,6 +56,7 @@ class MinuteController extends Controller
 
     public function next(Meeting $meeting, Listing $listing, Request $request)
     {
+        if($meeting->closed) return redirect()->back();
         if($request->action == 'close')
         {
             $parent = $listing->parent;
@@ -70,6 +75,7 @@ class MinuteController extends Controller
 
     private function get_next(Meeting $meeting, Listing $listing)
     {
+        if($meeting->closed) return redirect()->back();
         //Find the place of this particular agenda-item in the meeting's agenda
         $my_place = $meeting->agenda_items->search(function ($item, $key) use ($listing){
             return $item->listing->id == $listing->id;
@@ -83,11 +89,13 @@ class MinuteController extends Controller
 
     public function questions(Meeting $meeting)
     {
+        if($meeting->closed) return redirect()->back();
         return view('minutes.questions')->with(compact('meeting'));
     }
     
     public function close(Meeting $meeting)
     {
+        if($meeting->closed) return redirect()->back();
         $meeting->closed_at = $meeting->freshTimestamp();
         $meeting->save();
         return redirect()->route('schoolyears.weeks.meetings.show', [$meeting->week->schoolyear, $meeting->week, $meeting]);
@@ -95,6 +103,7 @@ class MinuteController extends Controller
 
     public function store_topic(Meeting $meeting, Request $request)
     {
+        if($meeting->closed) return redirect()->back();
         $request->validate([
             'title' => 'required|max:191',
             'duration' => 'nullable|integer',
