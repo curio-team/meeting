@@ -11,4 +11,14 @@ class Comment extends Model
     {
     	return $this->morphTo();
     }
+
+    public function canEdit()
+    {
+    	if($this->author == \Auth::user()->id && $this->created_at > \Carbon\Carbon::now()->subMinutes(30))
+    	{
+    		return true;
+    	}
+
+    	return false;
+    }
 }

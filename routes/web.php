@@ -74,6 +74,8 @@ Route::post('topics/{topic}/tasks', 'TaskController@store_with_topic')->name('to
 //Comments
 Route::post('topics/{topic}/comments', 'CommentController@store_topic')->name('topics.comments.store');
 Route::post('tasks/{task}/comments', 'CommentController@store_task')->name('tasks.comments.store');
+Route::get('comment/{comment}/edit', 'CommentController@edit')->name('comments.edit');
+Route::put('comment/{comment}', 'CommentController@update')->name('comments.update');
 
 //Listings
 Route::post('listings/{listing}/meetings', 'ListingController@attach')->name('listings.attach');

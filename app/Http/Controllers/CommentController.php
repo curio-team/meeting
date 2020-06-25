@@ -31,4 +31,34 @@ class CommentController extends Controller
 
     	$commentable->comments()->save($comment);
     }
+
+    public function edit(Comment $comment, Request $request)
+    {
+        if(!$comment->canEdit()) return redirect()->back();
+        
+        if(session('errors'))
+        {
+            session()->keep('prev');
+        }
+        else
+        {
+            session()->flash('prev', url()->previous());
+        }
+
+        return view('comments.edit')
+                ->with(compact('comment'));
+    }
+
+    public function update(Comment $comment, Request $request)
+    {
+        if($comment->canEdit())
+        {
+            session()->keep('prev');
+            $request->validate(['comment' => 'required']);
+            $comment->text = $request->comment;
+            $comment->save();
+        }
+
+        return redirect(session('prev'));
+    }
 }
