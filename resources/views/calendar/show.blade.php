@@ -12,12 +12,14 @@
 @endpush
 
 @section('buttons-right')
-    <a class="btn btn-outline-light" href="{{ route('schoolyears.show', App\Schoolyear::current()) }}">
-        <i class="fas fa-plus"></i> Toevoegen
-    </a>
+    @if(App\Schoolyear::current() != null)
+	    <a class="btn btn-outline-light" href="{{ route('schoolyears.show', App\Schoolyear::current()) }}">
+	        <i class="fas fa-plus"></i> Toevoegen
+	    </a>
+	@endif
     <a class="btn btn-outline-light" href="{{ route('schoolyears.index') }}">
         <i class="far fa-folder"></i> Alle jaren
-    </a>
+	</a>
     <a class="btn btn-outline-light" href="{{ route('suggestions.index') }}">
         <i class="far fa-lightbulb"></i> Suggesties
     </a>

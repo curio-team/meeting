@@ -90,3 +90,8 @@ Route::get('/login', function(){
 	return redirect('/amoclient/redirect');
 })->name('login');
 
+
+// \DB::listen(function($sql) {
+//     var_dump($sql->sql);
+//     echo '<br />';
+// });
