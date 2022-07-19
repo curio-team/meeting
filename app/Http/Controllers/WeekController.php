@@ -42,7 +42,7 @@ class WeekController extends Controller
     {
 
         $request->validate([
-            'weeks.*.week' => 'nullable|digits:1'
+            'weeks.*.week' => 'nullable|integer'
         ]);
 
     	foreach($request->weeks as $req_week)
