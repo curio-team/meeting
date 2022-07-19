@@ -18,10 +18,23 @@ class Suggestion extends Model
     	$week = $meeting->week;
     	if($week->term == null) return collect();
 
-    	return self
-    		::whereRaw('(term < ? OR (term = ? AND week <= ?))', [$week->term, $week->term, $week->week])
-    		->whereDoesntHave('schoolyears', function($query) use($meeting){
-    			$query->where('schoolyear_id', $meeting->week->schoolyear->id);
-    		})->get();
+        if($week->term == "Sep")
+        {
+            return self
+            ::whereRaw('(term = ? AND week <= ?)', [$week->term, $week->week])
+            ->whereDoesntHave('schoolyears', function($query) use($meeting){
+                $query->where('schoolyear_id', $meeting->week->schoolyear->id);
+            })->get();
+        }
+        if($week->term == "Feb")
+        {
+            return self
+            ::whereRaw('term = "Sep" OR (term = ? AND week <= ?)', [$week->term, $week->week])
+            ->whereDoesntHave('schoolyears', function($query) use($meeting){
+                $query->where('schoolyear_id', $meeting->week->schoolyear->id);
+            })->get();
+        }
+
+    	
     }
 }

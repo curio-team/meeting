@@ -42,7 +42,7 @@ class SuggestionController extends Controller
     private function save(Request $request, Suggestion $suggestion = null)
     {
         $request->validate([
-            'term' => 'required|integer|between:1,4',
+            'term' => 'required',
             'week' => 'required|integer|between:1,9',
             'title' => 'required|max:191'
         ]);

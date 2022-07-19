@@ -71,10 +71,10 @@
 		<div>
 			<label for="day">Plaats gegenereerde vergaderingen op:</label>
 			<select name="day" id="day">
-				<option value="0">maandag</option>
+				<option value="0" selected>maandag</option>
 				<option value="1">dinsdag</option>
 				<option value="2">woensdag</option>
-				<option value="3" selected>donderdag</option>
+				<option value="3">donderdag</option>
 				<option value="4">vrijdag</option>
 			</select>.
 		</div>

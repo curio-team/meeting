@@ -42,7 +42,7 @@
 				<select class="form-control" name="date" id="date">
 					<?php $date = clone $week->start; ?>
 					@while($date <= $week->end)
-						<option value="{{ $date->format('Y-m-d') }}" <?php if($date->format('N') == 4) echo 'selected="selected"'; ?>>{{ $date->format('D d-m') }}</option>
+						<option value="{{ $date->format('Y-m-d') }}" <?php if($date->format('N') == 1) echo 'selected="selected"'; ?>>{{ $date->format('D d-m') }}</option>
 						<?php $date->modify('+1 day'); ?>
 					@endwhile
 				</select>

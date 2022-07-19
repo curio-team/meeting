@@ -26,9 +26,12 @@
 		@include ('layouts.errors')
 
 		<div class="form-group row">
-			<label for="term" class="col-sm-3 col-form-label">Periode</label>
+			<label for="term" class="col-sm-3 col-form-label">Blok</label>
 			<div class="col-sm-6">
-				<input type="number" required min="1" max="4" class="form-control" id="term" name="term" value="{{ $suggestion->term }}">
+				<select required class="form-control" id="term" name="term">
+					<option @if($suggestion->term == 'Sep') selected @endif>Sep</option>
+					<option @if($suggestion->term == 'Sep') selected @endif>Feb</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group row">

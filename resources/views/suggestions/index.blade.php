@@ -18,9 +18,10 @@
 	<p>Deze items komen ieder jaar als herinnering terug op de agenda's van de betreffende week.</p>
 	<table class="table">
 		<tbody>
-			@for($term = 1; $term <= 4; $term++)
-				<tr><td colspan="3"><strong>Periode {{ $term }}</strong></td></tr>
-				@for($week = 1; $week <= 8; $week++)
+			<?php $terms = ["Sep", "Feb"]; ?>
+			@foreach ($terms as $term)
+				<tr><td colspan="3"><strong>Blok {{ $term }}</strong></td></tr>
+				@for($week = 1; $week <= 16; $week++)
 					
 					@forelse($suggestions->where('term', $term)->where('week', $week) as $suggestion)
 						<tr>
@@ -40,7 +41,7 @@
 					@endforelse
 					
 				@endfor
-			@endfor
+			@endforeach
 		</tbody>
 	</table>
 

@@ -19,7 +19,7 @@ class CreateWeeksTable extends Migration
             $table->integer('year');
             $table->integer('iso_week');
             $table->integer('term')->nullable();
-            $table->integer('week')->nullable();
+            $table->string('week')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
 

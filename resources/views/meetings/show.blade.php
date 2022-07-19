@@ -19,16 +19,6 @@
 		@includeWhen(count($suggestions), 'meetings.partials.suggestions')
 		@include('layouts.partials.status')
 
-		<div class="alert alert-{{ collect(['info', 'warning', 'danger', 'secondary', 'success'])->random() }}">
-			<p><i class="fas fa-fw fa-info"></i> <strong>Werkafspraken vergadering</strong></p>
-			<ul>
-				<li>Zie ook <a href="https://edurocwb.sharepoint.com/:w:/r/sites/groepsite/Radius-College---ICT-ICO/_layouts/15/Doc.aspx?sourcedoc=%7BA580BFF9-063E-47A4-BD72-2111B7C0116B%7D&file=_Overlegstructuur_ICO.docx&action=default&mobileredirect=true" target="_blank">overlegstructuur team ICO</a>.</li>
-				<li>Mededelingen en vragen proberen we zoveel mogelijk per mail af te doen, breng ze alleen in als vergaderpunt als het erg belangrijk is om het face-to-face te melden.</li>
-				<li>Wees duidelijk in de intentie van je mail/vergaderpunt; ter info, discussiepunt, te nemen besluit, etc..</li>
-				<li>Een besluit wat het beleid van het team zou veranderen, moet besproken worden in het teamoverleg. Kleinere besluiten (bijvoorbeeld: <em>wanneer is de ouderavond</em>) proberen we zoveel mogelijk te regelen met alleen de betrokkenen.</li>
-			</ul>
-		</div>
-
 		<div class="d-flex justify-content-between mt-5 mb-3">
 			<h4>Agenda</h4>
 			<div class="btn-group d-print-none">
@@ -93,7 +83,7 @@
 				<tr>
 					<td class="d-none d-md-table-cell">{{ $end+1 }}.</td>
 					<td class="d-none d-md-table-cell"></td>
-					<td>Rondvraag</td>
+					<td>Wist je dat?-ronde</td>
 					<td></td>
 					<td class="d-none d-md-table-cell"></td>
 					<td class="d-print-none"></td>

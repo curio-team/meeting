@@ -23,7 +23,7 @@
         @include('layouts.partials.status')
 		@includeWhen(count($suggestions), 'meetings.partials.suggestions')
 
-		<h4 class="mt-5">Toevoegen</h4>
+		<h4 class="mt-5">Toevoegen (er-staat-wat-in-de-fik-kaart)</h4>
 		<p>Voeg nog een extra punt toe:</p>
 
 		<div class="list-group">

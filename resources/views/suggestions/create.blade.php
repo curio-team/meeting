@@ -25,9 +25,12 @@
 		@include ('layouts.errors')
 
 		<div class="form-group row">
-			<label for="term" class="col-sm-3 col-form-label">Periode</label>
+			<label for="term" class="col-sm-3 col-form-label">Blok</label>
 			<div class="col-sm-6">
-				<input type="number" required min="1" max="4" class="form-control" id="term" name="term">
+				<select required class="form-control" id="term" name="term">
+					<option>Sep</option>
+					<option>Feb</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group row">

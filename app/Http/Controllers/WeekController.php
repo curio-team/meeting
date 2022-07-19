@@ -42,7 +42,6 @@ class WeekController extends Controller
     {
 
         $request->validate([
-            'weeks.*.term' => 'nullable|digits:1',
             'weeks.*.week' => 'nullable|digits:1'
         ]);
 

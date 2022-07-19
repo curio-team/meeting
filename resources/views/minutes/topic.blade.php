@@ -91,7 +91,7 @@
 			</form>
 			
 			@includeWhen($topic->open, 'minutes.partials.postpone')
-			@includeWhen($topic->open, 'minutes.partials.new_task')
+			{{-- @includeWhen($topic->open, 'minutes.partials.new_task') --}}
 
 		</div>
 	</div>
