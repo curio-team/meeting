@@ -46,7 +46,7 @@
 				<tr>
 					<td class="d-none d-md-table-cell">1.</td>
 					<td class="d-none d-md-table-cell"></td>
-					<td>Welkom, vaststellen agenda en notulist, vaststellen notulen vorige vergadering</td>
+					<td>Vaststellen agenda en notulist, vaststellen notulen vorige vergadering</td>
 					<td></td>
 					<td class="d-none d-md-table-cell"></td>
 					<td class="d-print-none"></td>
